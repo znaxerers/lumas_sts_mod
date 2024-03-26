@@ -1,5 +1,6 @@
-package TestMod;
+package TestMod.relics;
 
+import TestMod.TestMod;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

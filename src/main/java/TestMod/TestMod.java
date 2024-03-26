@@ -8,11 +8,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.*;
+import TestMod.characters.*;
+import TestMod.relics.*;
 //import basemod.interfaces.EditRelicsSubscriber;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 @SpireInitializer
-public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, PostExhaustSubscriber,
+public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, PostExhaustSubscriber,
         PostBattleSubscriber, PostDungeonInitializeSubscriber {
 
     private int count, totalCount;
@@ -46,6 +50,16 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Pos
     // Colors (RGB)
     // Character Color
     public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
+
+    private static final String THE_DEFAULT_BUTTON = "TestModResources/images/charSelect/DefaultCharacterButton.png";
+    private static final String THE_DEFAULT_PORTRAIT = "TestModResources/images/charSelect/DefaultCharacterPortraitBG.png";
+    public static final String THE_DEFAULT_SHOULDER_1 = "TestModResources/images/char/defaultCharacter/shoulder.png";
+    public static final String THE_DEFAULT_SHOULDER_2 = "TestModResources/images/char/defaultCharacter/shoulder2.png";
+    public static final String THE_DEFAULT_CORPSE = "TestModResources/images/char/defaultCharacter/corpse.png";
+
+    // Atlas and JSON files for the Animations
+    public static final String THE_DEFAULT_SKELETON_ATLAS = "TestModResources/images/char/defaultCharacter/skeleton.atlas";
+    public static final String THE_DEFAULT_SKELETON_JSON = "TestModResources/images/char/defaultCharacter/skeleton.json";
 
     private void resetCounts() {
         totalCount = count = 0;
@@ -87,6 +101,9 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Pos
         BaseMod.loadCustomStringsFile(RelicStrings.class, getModID() + "Resources/localization/eng/TestMod-Relic-Strings.json");
         // Loads in strings that contain your relic name, descriptions and flavor.
 
+        // CharacterStrings
+        BaseMod.loadCustomStringsFile(CharacterStrings.class,
+                getModID() + "Resources/localization/eng/TestMod-Character-Strings.json");
         logger.info("Done testing strings");
     }
 
@@ -112,6 +129,17 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Pos
         // (the others are all starters so they're marked as seen in the character file)
         UnlockTracker.markRelicAsSeen(TestRelic.ID);
         logger.info("Done adding relics!");
+    }
+
+    @Override
+    public void receiveEditCharacters() {
+        logger.info("begin editing characters");
+
+        logger.info("add ");
+        BaseMod.addCharacter(new TheLuma("the Luma", TheLuma.Enums.THE_DEFAULT),
+                THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheLuma.Enums.THE_DEFAULT);
+
+        logger.info("done editing characters");
     }
 
     public static void setModID(String ID) { // DON'T EDIT
@@ -150,6 +178,10 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Pos
     public static String getModID() { // NO
         return modID; // DOUBLE NO
     } // NU-UH
+
+    public static String makeCardPath(String resourcePath) {
+        return getModID() + "Resources/images/cards/" + resourcePath;
+    }
 
     public static String makeRelicPath(String resourcePath) {
         return getModID() + "Resources/images/relics/" + resourcePath;
