@@ -1,0 +1,9 @@
+{
+  "TestMod:TestRelic": {
+    "NAME": "Test Energy Relic",
+    "FLAVOR": "The Luma relic!",
+    "DESCRIPTIONS": [
+      "Gain #b1 [E] ."
+    ]
+  }
+}
