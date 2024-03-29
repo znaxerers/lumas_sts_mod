@@ -1,6 +1,6 @@
 package TestMod.characters;
 
-import TestMod.cards.DefaultCommonAttack;
+import TestMod.cards.*;
 import TestMod.relics.TestRelic;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
@@ -155,19 +155,30 @@ public class TheLuma extends CustomPlayer {
         logger.info("Begin loading starter Deck Strings");
 
         retVal.add(DefaultCommonAttack.ID);
-//        retVal.add(DefaultUncommonAttack.ID);
-//        retVal.add(DefaultRareAttack.ID);
-//
-//        retVal.add(DefaultCommonSkill.ID);
-//        retVal.add(DefaultUncommonSkill.ID);
-//        retVal.add(DefaultRareSkill.ID);
-//
-//        retVal.add(DefaultCommonPower.ID);
-//        retVal.add(DefaultUncommonPower.ID);
-//        retVal.add(DefaultRarePower.ID);
-//
-//        retVal.add(DefaultAttackWithVariable.ID);
-//        retVal.add(DefaultSecondMagicNumberSkill.ID);
+        logger.info("Card 1");
+        retVal.add(DefaultUncommonAttack.ID);
+        logger.info("Card 2");
+        retVal.add(DefaultRareAttack.ID);
+        logger.info("Card 3");
+
+        retVal.add(DefaultCommonSkill.ID);
+        logger.info("Card 4");
+        retVal.add(DefaultUncommonSkill.ID);
+        logger.info("Card 5");
+        retVal.add(DefaultRareSkill.ID);
+        logger.info("Card 6");
+
+        retVal.add(DefaultCommonPower.ID);
+        logger.info("Card 7");
+        retVal.add(DefaultUncommonPower.ID);
+        logger.info("Card 8");
+        retVal.add(DefaultRarePower.ID);
+        logger.info("Card 9");
+
+        retVal.add(DefaultAttackWithVariable.ID);
+        logger.info("Card 10");
+        retVal.add(DefaultSecondMagicNumberSkill.ID);
+        logger.info("Card 11");
 //        retVal.add(OrbSkill.ID);
         return retVal;
     }

@@ -88,6 +88,8 @@ public class DefaultCommonAttack extends CustomCard {
         // Aside from baseDamage/MagicNumber/Block there's also a few more.
         // Just type this.base and let intelliJ auto complete for you, or, go read up AbstractCard
 
+        this.setBackgroundTexture("img/custom_background_small.png", "img/custom_background_large.png");
+
         baseDamage = DAMAGE;
 
         this.tags.add(CardTags.STARTER_STRIKE); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.

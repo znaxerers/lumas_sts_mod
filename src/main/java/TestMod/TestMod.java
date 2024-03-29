@@ -1,16 +1,21 @@
 package TestMod;
 
+import TestMod.cards.*;
+import TestMod.variables.*;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+//import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -28,9 +33,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+
 @SpireInitializer
-public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, PostExhaustSubscriber,
-        PostBattleSubscriber, PostDungeonInitializeSubscriber {
+public class TestMod implements
+        EditRelicsSubscriber,
+        EditStringsSubscriber,
+        EditCharactersSubscriber,
+        EditCardsSubscriber,
+        EditKeywordsSubscriber,
+        PostExhaustSubscriber,
+        PostBattleSubscriber,
+        PostDungeonInitializeSubscriber {
 
     private int count, totalCount;
     public static final Logger logger = LogManager.getLogger(TestMod.class.getName());
@@ -51,6 +64,19 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
     // Character Color
     public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
 
+    private static final String ATTACK_DEFAULT_GRAY = "TestModResources/images/512/bg_attack_default_gray.png";
+    private static final String SKILL_DEFAULT_GRAY = "TestModResources/images/512/bg_skill_default_gray.png";
+    private static final String POWER_DEFAULT_GRAY = "TestModResources/images/512/bg_power_default_gray.png";
+
+    private static final String ENERGY_ORB_DEFAULT_GRAY = "TestModResources/images/512/card_default_gray_orb.png";
+    private static final String CARD_ENERGY_ORB = "TestModResources/images/512/card_small_orb.png";
+
+    private static final String ATTACK_DEFAULT_GRAY_PORTRAIT = "TestModResources/images/1024/bg_attack_default_gray.png";
+    private static final String SKILL_DEFAULT_GRAY_PORTRAIT = "TestModResources/images/1024/bg_skill_default_gray.png";
+    private static final String POWER_DEFAULT_GRAY_PORTRAIT = "TestModResources/images/1024/bg_power_default_gray.png";
+    private static final String ENERGY_ORB_DEFAULT_GRAY_PORTRAIT = "TestModResources/images/1024/card_default_gray_orb.png";
+
+    public static final String BADGE_IMAGE = "TestModResources/images/Badge.png";
     private static final String THE_DEFAULT_BUTTON = "TestModResources/images/charSelect/DefaultCharacterButton.png";
     private static final String THE_DEFAULT_PORTRAIT = "TestModResources/images/charSelect/DefaultCharacterPortraitBG.png";
     public static final String THE_DEFAULT_SHOULDER_1 = "TestModResources/images/char/defaultCharacter/shoulder.png";
@@ -96,6 +122,56 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
     }
 
     @Override
+    public void receiveEditCards() {
+        logger.info("Adding variables");
+        //Ignore this
+        pathCheck();
+        // Add the Custom Dynamic Variables
+        logger.info("Add variables");
+        // Add the Custom Dynamic variables
+        BaseMod.addDynamicVariable(new DefaultCustomVariable());
+        BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
+
+        logger.info("Adding cards");
+        // Add the cards
+        // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash
+        // when generating card rewards/shop screen items.
+
+        // This method automatically adds any cards so you don't have to manually load them 1 by 1
+        // For more specific info, including how to exclude cards from being added:
+        // https://github.com/daviscook477/BaseMod/wiki/AutoAdd
+
+        // The ID for this function isn't actually your modid as used for prefixes/by the getModID() method.
+        // It's the mod id you give MTS in ModTheSpire.json - by default your artifact ID in your pom.xml
+
+        //TO DO: Rename the "DefaultMod" with the modid in your ModTheSpire.json file
+        //TO DO: The artifact mentioned in ModTheSpire.json is the artifactId in pom.xml you should've edited earlier
+//        new AutoAdd("TestMod") // ${project.artifactId}
+//                .packageFilter(AbstractDefaultCard.class) // filters to any class in the same package as AbstractDefaultCard, nested packages included
+//                .setDefaultSeen(true)
+//                .cards();
+
+        // .setDefaultSeen(true) unlocks the cards
+        // This is so that they are all "seen" in the library,
+        // for people who like to look at the card list before playing your mod
+
+        //Autoadd doesnt work
+//        BaseMod.addCard(new DefaultAttackWithVariable());
+//        BaseMod.addCard(new DefaultSecondMagicNumberSkill());
+        BaseMod.addCard(new DefaultCommonAttack());
+        BaseMod.addCard(new DefaultCommonPower());
+        BaseMod.addCard(new DefaultCommonSkill());
+        BaseMod.addCard(new DefaultUncommonAttack());
+        BaseMod.addCard(new DefaultUncommonPower());
+        BaseMod.addCard(new DefaultUncommonSkill());
+        BaseMod.addCard(new DefaultRareAttack());
+        BaseMod.addCard(new DefaultRarePower());
+        BaseMod.addCard(new DefaultRareSkill());
+
+
+        logger.info("Done adding cards!");
+    }
+    @Override
     public void receiveEditStrings() {
         logger.info("Testing strings");
         BaseMod.loadCustomStringsFile(RelicStrings.class, getModID() + "Resources/localization/eng/TestMod-Relic-Strings.json");
@@ -104,6 +180,14 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
         // CharacterStrings
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
                 getModID() + "Resources/localization/eng/TestMod-Character-Strings.json");
+
+        // CardStrings
+        BaseMod.loadCustomStringsFile(CardStrings.class,
+                getModID() + "Resources/localization/eng/TestMod-Card-Strings.json");
+
+        // PowerStrings
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
+                getModID() + "Resources/localization/eng/TestMod-Power-Strings.json");
         logger.info("Done testing strings");
     }
 
@@ -140,6 +224,28 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
                 THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheLuma.Enums.THE_DEFAULT);
 
         logger.info("done editing characters");
+    }
+
+    @Override
+    public void receiveEditKeywords() {
+        // Keywords on cards are supposed to be Capitalized, while in Keyword-String.json they're lowercase
+        //
+        // Multiword keywords on cards are done With_Underscores
+        //
+        // If you're using multiword keywords, the first element in your NAMES array in your keywords-strings.json has to be the same as the PROPER_NAME.
+        // That is, in Card-Strings.json you would have #yA_Long_Keyword (#y highlights the keyword in yellow).
+        // In Keyword-Strings.json you would have PROPER_NAME as A Long Keyword and the first element in NAMES be a long keyword, and the second element be a_long_keyword
+
+        Gson gson = new Gson();
+        String json = Gdx.files.internal(getModID() + "Resources/localization/eng/TestMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+                BaseMod.addKeyword(getModID().toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                //  getModID().toLowerCase() makes your keyword mod specific (it won't show up in other cards that use that word)
+            }
+        }
     }
 
     public static void setModID(String ID) { // DON'T EDIT
@@ -183,6 +289,10 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
         return getModID() + "Resources/images/cards/" + resourcePath;
     }
 
+    public static String makePowerPath(String resourcePath) {
+        return getModID() + "Resources/images/powers/" + resourcePath;
+    }
+
     public static String makeRelicPath(String resourcePath) {
         return getModID() + "Resources/images/relics/" + resourcePath;
     }
@@ -195,4 +305,14 @@ public class TestMod implements EditRelicsSubscriber, EditStringsSubscriber, Edi
         return getModID() + ":" + idText;
     }
 
+}
+
+class Keyword {
+    public String ID = "";
+    public String PROPER_NAME;
+    public String[] NAMES;
+    public String DESCRIPTION;
+
+    public Keyword() {
+    }
 }
