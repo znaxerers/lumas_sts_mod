@@ -6,5 +6,13 @@
 "TestMod:RarePower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+},
+"TestMod:TalismanPower": {
+        "NAME": "Talisman",
+        "DESCRIPTIONS": ["Upon receiving attack damage, lose #b", " HP. At #b" , " #yTalisman, reduce to #b", " HP."]
+},
+"TestMod:MembershipPower": {
+        "NAME": "Membership",
+        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
 }
 }

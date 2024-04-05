@@ -5,11 +5,11 @@
   },
   "TestMod:DefaultCommonSkill": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL thedefault:Multiword_Keyword."
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Multiword_Keyword."
   },
   "TestMod:DefaultCommonPower": {
     "NAME": "Hold Place",
-    "DESCRIPTION": "Gain !M! thedefault:Keyword.",
+    "DESCRIPTION": "Gain !M! TestMod:Keyword.",
     "UPGRADE_DESCRIPTION": "Gain !M! TestMod:Keywords."
   },
   "TestMod:DefaultUncommonAttack": {
@@ -22,8 +22,8 @@
   },
   "TestMod:DefaultUncommonPower": {
     "NAME": "Weirdness",
-    "DESCRIPTION": "Gain X thedefault:Keywords.",
-    "UPGRADE_DESCRIPTION": "Gain X +1 thedefault:Keywords."
+    "DESCRIPTION": "Gain X TestMod:Keywords.",
+    "UPGRADE_DESCRIPTION": "Gain X +1 TestMod:Keywords."
   },
   "TestMod:DefaultRareAttack": {
     "NAME": "TOUCH",
@@ -44,6 +44,18 @@
   },
   "TestMod:DefaultSecondMagicNumberSkill": {
     "NAME": "Cool 2 Number Card",
-    "DESCRIPTION": "Apply !M! Vulnerable and !theDefault:SecondMagic! poison to an enemy."
+    "DESCRIPTION": "Apply !M! Vulnerable and !TestMod:SecondMagic! poison to an enemy."
+  },
+  "TestMod:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "TestMod:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "TestMod:TalismanBladeSpray": {
+    "NAME": "Talisman Blade Spray",
+    "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman to ALL enemies."
   }
 }

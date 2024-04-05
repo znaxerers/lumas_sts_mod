@@ -46,10 +46,12 @@ public class TheLuma extends CustomPlayer {
 
     public static class Enums {
         @SpireEnum
-        public static AbstractPlayer.PlayerClass THE_DEFAULT;
+        public static AbstractPlayer.PlayerClass THE_LUMA;
         @SpireEnum(name = "DEFAULT_GRAY_COLOR") // These two HAVE to have the same absolutely identical name.
+        //@SpireEnum
         public static AbstractCard.CardColor COLOR_GRAY;
         @SpireEnum(name = "DEFAULT_GRAY_COLOR") @SuppressWarnings("unused")
+        //@SpireEnum @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
@@ -105,14 +107,14 @@ public class TheLuma extends CustomPlayer {
 
 
         // =============== TEXTURES, ENERGY, LOADOUT =================
-
+        logger.info("test");
         initializeClass(null, // required call to load textures and setup energy/loadout.
                 // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
                 THE_DEFAULT_SHOULDER_2, // campfire pose
                 THE_DEFAULT_SHOULDER_1, // another campfire pose
                 THE_DEFAULT_CORPSE, // dead corpse
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
-
+        logger.info("end test");
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
 
@@ -154,32 +156,44 @@ public class TheLuma extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(DefaultCommonAttack.ID);
-        logger.info("Card 1");
-        retVal.add(DefaultUncommonAttack.ID);
-        logger.info("Card 2");
-        retVal.add(DefaultRareAttack.ID);
-        logger.info("Card 3");
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
 
-        retVal.add(DefaultCommonSkill.ID);
-        logger.info("Card 4");
-        retVal.add(DefaultUncommonSkill.ID);
-        logger.info("Card 5");
-        retVal.add(DefaultRareSkill.ID);
-        logger.info("Card 6");
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
+        retVal.add(Defend.ID);
 
-        retVal.add(DefaultCommonPower.ID);
-        logger.info("Card 7");
-        retVal.add(DefaultUncommonPower.ID);
-        logger.info("Card 8");
-        retVal.add(DefaultRarePower.ID);
-        logger.info("Card 9");
-
-        retVal.add(DefaultAttackWithVariable.ID);
-        logger.info("Card 10");
-        retVal.add(DefaultSecondMagicNumberSkill.ID);
-        logger.info("Card 11");
-//        retVal.add(OrbSkill.ID);
+//        retVal.add(DefaultCommonAttack.ID);
+//        logger.info("Card 1");
+//        retVal.add(DefaultUncommonAttack.ID);
+//        logger.info("Card 2");
+//        retVal.add(DefaultRareAttack.ID);
+//        logger.info("Card 3");
+//
+//        retVal.add(DefaultCommonSkill.ID);
+//        logger.info("Card 4");
+//        retVal.add(DefaultUncommonSkill.ID);
+//        logger.info("Card 5");
+//        retVal.add(DefaultRareSkill.ID);
+//        logger.info("Card 6");
+//
+//        retVal.add(DefaultCommonPower.ID);
+//        logger.info("Card 7");
+//        retVal.add(DefaultUncommonPower.ID);
+//        logger.info("Card 8");
+//        retVal.add(DefaultRarePower.ID);
+//        logger.info("Card 9");
+//
+//        retVal.add(DefaultAttackWithVariable.ID);
+//        logger.info("Card 10");
+//        retVal.add(DefaultSecondMagicNumberSkill.ID);
+//        logger.info("Card 11");
+        //retVal.add(OrbSkill.ID);
         return retVal;
     }
 

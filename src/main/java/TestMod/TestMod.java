@@ -7,6 +7,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 //import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.google.gson.Gson;
@@ -95,12 +96,30 @@ public class TestMod implements
         BaseMod.subscribe(this);
         setModID("TestMod");
 
+        BaseMod.addColor(TheLuma.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+                DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+                ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
+                ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
+                ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+
+        // This loads the mod settings.
+        // The actual mod Button is added below in receivePostInitialize()
+        theDefaultDefaultSettings.setProperty(ENABLE_PLACEHOLDER_SETTINGS, "FALSE"); // This is the default setting. It's actually set...
+        try {
+            SpireConfig config = new SpireConfig("TestMod", "theDefaultConfig", theDefaultDefaultSettings); // ...right here
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            enablePlaceholder = config.getBool(ENABLE_PLACEHOLDER_SETTINGS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         resetCounts();
     }
 
     public static void initialize() {
         System.out.println(">>>Initializing gooning mode");
-        new TestMod();
+        TestMod testmod = new TestMod();
     }
 
     @Override
@@ -146,27 +165,27 @@ public class TestMod implements
 
         //TO DO: Rename the "DefaultMod" with the modid in your ModTheSpire.json file
         //TO DO: The artifact mentioned in ModTheSpire.json is the artifactId in pom.xml you should've edited earlier
-//        new AutoAdd("TestMod") // ${project.artifactId}
-//                .packageFilter(AbstractDefaultCard.class) // filters to any class in the same package as AbstractDefaultCard, nested packages included
-//                .setDefaultSeen(true)
-//                .cards();
+        new AutoAdd("TestMod") // ${project.artifactId}
+                .packageFilter(AbstractDefaultCard.class) // filters to any class in the same package as AbstractDefaultCard, nested packages included
+                .setDefaultSeen(true)
+                .cards();
 
         // .setDefaultSeen(true) unlocks the cards
         // This is so that they are all "seen" in the library,
         // for people who like to look at the card list before playing your mod
 
-        //Autoadd doesnt work
+//        //Autoadd doesnt work
 //        BaseMod.addCard(new DefaultAttackWithVariable());
 //        BaseMod.addCard(new DefaultSecondMagicNumberSkill());
-        BaseMod.addCard(new DefaultCommonAttack());
-        BaseMod.addCard(new DefaultCommonPower());
-        BaseMod.addCard(new DefaultCommonSkill());
-        BaseMod.addCard(new DefaultUncommonAttack());
-        BaseMod.addCard(new DefaultUncommonPower());
-        BaseMod.addCard(new DefaultUncommonSkill());
-        BaseMod.addCard(new DefaultRareAttack());
-        BaseMod.addCard(new DefaultRarePower());
-        BaseMod.addCard(new DefaultRareSkill());
+//        BaseMod.addCard(new DefaultCommonAttack());
+//        BaseMod.addCard(new DefaultCommonPower());
+//        BaseMod.addCard(new DefaultCommonSkill());
+//        BaseMod.addCard(new DefaultUncommonAttack());
+//        BaseMod.addCard(new DefaultUncommonPower());
+//        BaseMod.addCard(new DefaultUncommonSkill());
+//        BaseMod.addCard(new DefaultRareAttack());
+//        BaseMod.addCard(new DefaultRarePower());
+//        BaseMod.addCard(new DefaultRareSkill());
 
 
         logger.info("Done adding cards!");
@@ -206,7 +225,7 @@ public class TestMod implements
         //BaseMod.addRelicToCustomPool(new TestRelic(), AbstractCard.CardColor.COLORLESS);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
-        BaseMod.addRelic(new TestRelic(), RelicType.SHARED);
+        BaseMod.addRelicToCustomPool(new TestRelic(), TheLuma.Enums.COLOR_GRAY);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
@@ -220,8 +239,8 @@ public class TestMod implements
         logger.info("begin editing characters");
 
         logger.info("add ");
-        BaseMod.addCharacter(new TheLuma("the Luma", TheLuma.Enums.THE_DEFAULT),
-                THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheLuma.Enums.THE_DEFAULT);
+        BaseMod.addCharacter(new TheLuma("the Luma", TheLuma.Enums.THE_LUMA),
+                THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheLuma.Enums.THE_LUMA);
 
         logger.info("done editing characters");
     }
