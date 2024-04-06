@@ -77,7 +77,7 @@ public class TalismanBladeSpray extends AbstractDynamicCard {
         AbstractMonster mo;
         while(var3.hasNext()) {
             mo = (AbstractMonster)var3.next();
-            this.addToBot(new ApplyPowerAction(mo, p, new TalismanPower(mo, p, magicNumber), 1, true, AbstractGameAction.AttackEffect.NONE));
+            this.addToBot(new ApplyPowerAction(mo, p, new TalismanPower(mo, p, magicNumber), magicNumber, true, AbstractGameAction.AttackEffect.NONE));
         }
     }
 
