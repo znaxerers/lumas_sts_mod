@@ -1,14 +1,15 @@
 package TestMod.characters;
 
-import KaltsitMod.character.Kaltsit.Enums;
-import KaltsitMod.helper.GenericHelper;
-import KaltsitMod.modcore.KaltsitModCore;
-import KaltsitMod.patches.MonsterPatch;
-import KaltsitMod.powers.CantAttackPower;
-import KaltsitMod.powers.NonDamagingRestructuringPower;
-import KaltsitMod.powers.PerceptualCoexistencePower;
-import KaltsitMod.ui.SkinSelectScreen;
-import KaltsitMod.vfx.MeltDownEffect;
+import TestMod.characters.TheLuma.Enums;
+import TestMod.helper.GenericHelper;
+//import KaltsitMod.modcore.KaltsitModCore;
+import TestMod.patches.LumoPatch;
+//import KaltsitMod.powers.CantAttackPower;
+//import KaltsitMod.powers.NonDamagingRestructuringPower;
+//import KaltsitMod.powers.PerceptualCoexistencePower;
+//import KaltsitMod.ui.SkinSelectScreen;
+//import KaltsitMod.vfx.MeltDownEffect;
+import TestMod.TestMod;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -49,7 +50,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class Lumo extends AbstractMonster {
-    public static final String ID = KaltsitModCore.MakePath(Mon3tr.class.getSimpleName());
+    public static final String ID = TestMod.makeID(Lumo.class.getSimpleName());
     private static final MonsterStrings STRINGS;
     private static final String NAME;
     private static final String[] MOVES;
@@ -75,18 +76,19 @@ public class Lumo extends AbstractMonster {
         super(NAME, ID, 40, 0.0F, 0.0F, 200.0F, 250.0F, (String)null, 0.0F, 0.0F);
         this.isPlayer = true;
         this.damage.add(new DamageInfo(this, 3));
-        SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
-        this.loadAnimation(skin.monsterPath + ".atlas", skin.monsterPath + ".json", 1.8F);
+        //SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
+        //this.loadAnimation(skin.monsterPath + ".atlas", skin.monsterPath + ".json", 1.8F);
+        this.loadAnimation("TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".atlas", "TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".json", 1.8F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
     }
 
     public void spawn() {
-        if (AbstractDungeon.player.chosenClass == Enums.KALTSIT) {
+        if (AbstractDungeon.player.chosenClass == Enums.THE_LUMA) {
             if (MathUtils.randomBoolean()) {
-                CardCrawlGame.sound.playA(KaltsitModCore.MakePath("Summon_1"), 0.0F);
+                //CardCrawlGame.sound.playA(KaltsitModCore.MakePath("Summon_1"), 0.0F);
             } else {
-                CardCrawlGame.sound.playA(KaltsitModCore.MakePath("Summon_2"), 0.0F);
+                //CardCrawlGame.sound.playA(KaltsitModCore.MakePath("Summon_2"), 0.0F);
             }
         }
 
@@ -165,10 +167,10 @@ public class Lumo extends AbstractMonster {
                 });
             }
         } else {
-            if (this.hasPower(CantAttackPower.id)) {
-                this.getPower(CantAttackPower.id).flash();
-                return;
-            }
+//            if (this.hasPower(CantAttackPower.id)) {
+//                this.getPower(CantAttackPower.id).flash();
+//                return;
+//            }
 
             DamageInfo.DamageType type = this.meltdownNextTurn ? DamageType.HP_LOSS : DamageType.NORMAL;
             ((DamageInfo)this.damage.get(0)).type = type;
@@ -180,7 +182,7 @@ public class Lumo extends AbstractMonster {
                 for(i = 0; i < this.damageTimes; ++i) {
                     if (this.meltdownNextTurn) {
                         GenericHelper.foreachAliveMonster((mo) -> {
-                            GenericHelper.addEffect(new MeltDownEffect(mo));
+                            //GenericHelper.addEffect(new MeltDownEffect(mo));
                             return false;
                         });
                     }
@@ -200,7 +202,7 @@ public class Lumo extends AbstractMonster {
                         AbstractMonster m = GenericHelper.getLowestMonster();
                         if (m != null) {
                             if (this.meltdownNextTurn) {
-                                GenericHelper.addEffect(new MeltDownEffect(m));
+                                //GenericHelper.addEffect(new MeltDownEffect(m));
                             }
 
                             ((DamageInfo)this.damage.get(0)).output = this.calculateDmg(m);
@@ -217,7 +219,7 @@ public class Lumo extends AbstractMonster {
                         AbstractMonster m = GenericHelper.getRandomMonsterSafe();
                         if (m != null) {
                             if (this.meltdownNextTurn) {
-                                GenericHelper.addEffect(new MeltDownEffect(m));
+                                //GenericHelper.addEffect(new MeltDownEffect(m));
                             }
 
                             ((DamageInfo)this.damage.get(0)).output = this.calculateDmg(m);
@@ -233,30 +235,30 @@ public class Lumo extends AbstractMonster {
 
     public void die() {
         this.die(false);
-        MonsterPatch.ReviveTimer = 5;
+        //MonsterPatch.ReviveTimer = 5;
     }
 
     public void die(boolean triggerRelic) {
         this.powers.forEach(AbstractPower::onDeath);
         this.changeState("Die");
         this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 3, DamageType.THORNS)));
-        if (AbstractDungeon.player.hasPower(NonDamagingRestructuringPower.id)) {
-            int intentDmg = (Integer)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentDmg");
-            this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(intentDmg), DamageType.THORNS, AttackEffect.FIRE));
-        }
+//        if (AbstractDungeon.player.hasPower(NonDamagingRestructuringPower.id)) {
+//            int intentDmg = (Integer)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentDmg");
+//            this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(intentDmg), DamageType.THORNS, AttackEffect.FIRE));
+//        }
 
-        if (AbstractDungeon.player.hasPower(PerceptualCoexistencePower.id)) {
-            this.powers.forEach((p) -> {
-                if (p.type != PowerType.DEBUFF) {
-                    p.owner = AbstractDungeon.player;
-                    if (p.amount / 2 > 0) {
-                        p.amount /= 2;
-                        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, p));
-                    }
-
-                }
-            });
-        }
+//        if (AbstractDungeon.player.hasPower(PerceptualCoexistencePower.id)) {
+//            this.powers.forEach((p) -> {
+//                if (p.type != PowerType.DEBUFF) {
+//                    p.owner = AbstractDungeon.player;
+//                    if (p.amount / 2 > 0) {
+//                        p.amount /= 2;
+//                        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, p));
+//                    }
+//
+//                }
+//            });
+//        }
 
         if (!this.isDying) {
             this.isDying = true;

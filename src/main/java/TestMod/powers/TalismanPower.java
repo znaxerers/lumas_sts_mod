@@ -70,7 +70,7 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
             this.addToTop(new SetHPAction(this.owner));
             this.amount -= 15;
             if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "Talisman"));
+                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             }
         }
     }

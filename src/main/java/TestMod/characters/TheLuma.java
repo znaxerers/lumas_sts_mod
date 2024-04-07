@@ -53,6 +53,10 @@ public class TheLuma extends CustomPlayer {
         @SpireEnum(name = "DEFAULT_GRAY_COLOR") @SuppressWarnings("unused")
         //@SpireEnum @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
+        @SpireEnum
+        public static AbstractCard.CardTarget SELF_AND_LUMO;
+        @SpireEnum
+        public static AbstractCard.CardTarget LUMO;
     }
 
     // =============== CHARACTER ENUMERATORS  =================
