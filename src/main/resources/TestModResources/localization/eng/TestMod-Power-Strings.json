@@ -13,6 +13,6 @@
 },
 "TestMod:MembershipPower": {
         "NAME": "Membership",
-        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+        "DESCRIPTIONS": ["Resource used for #yMembership cards. At #b", " #yMembership, summon LUMA Fumo."]
 }
 }

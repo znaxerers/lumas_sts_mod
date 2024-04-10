@@ -5,5 +5,13 @@
     "DESCRIPTIONS": [
       "Gain #b1 [E] ."
     ]
+  },
+  "TestMod:LumaRelic": {
+    "NAME": "Luma Coin",
+    "FLAVOR": "A treasured heirloom.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b",
+      " #yTestMod:Membership."
+    ]
   }
 }

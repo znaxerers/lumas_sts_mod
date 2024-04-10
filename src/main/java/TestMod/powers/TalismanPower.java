@@ -5,6 +5,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
@@ -56,8 +57,12 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.type != DamageInfo.DamageType.HP_LOSS) {
+        if (damageAmount < this.owner.currentHealth && damageAmount > 0 && info.owner != null && info.type == DamageInfo.DamageType.NORMAL && info.type != DamageInfo.DamageType.HP_LOSS) {
+            this.flash();
+
             AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this.owner, (AbstractCreature)null, this.amount, AbstractGameAction.AttackEffect.FIRE));
+
+            this.updateDescription();
         }
 
         return damageAmount;
@@ -67,7 +72,7 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
         if (this.amount >= 15) {
-            this.addToTop(new SetHPAction(this.owner));
+            this.addToBot(new LoseHPAction(this.owner, this.owner, 15, AbstractGameAction.AttackEffect.LIGHTNING));
             this.amount -= 15;
             if (this.amount <= 0) {
                 this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));

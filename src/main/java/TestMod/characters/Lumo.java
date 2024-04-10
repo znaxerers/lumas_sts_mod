@@ -76,11 +76,12 @@ public class Lumo extends AbstractMonster {
         super(NAME, ID, 40, 0.0F, 0.0F, 200.0F, 250.0F, (String)null, 0.0F, 0.0F);
         this.isPlayer = true;
         this.damage.add(new DamageInfo(this, 3));
-        //SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
-        //this.loadAnimation(skin.monsterPath + ".atlas", skin.monsterPath + ".json", 1.8F);
-        this.loadAnimation("TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".atlas", "TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".json", 1.8F);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
+//        SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
+//        this.loadAnimation(skin.monsterPath + ".atlas", skin.monsterPath + ".json", 1.8F);
+//        this.loadAnimation("TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".atlas", "TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".json", 1.8F);
+//        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+//        e.setTime(e.getEndTime() * MathUtils.random());
+        this.img = new Texture("TestModResources/images/char/Lumo.png");
     }
 
     public void spawn() {

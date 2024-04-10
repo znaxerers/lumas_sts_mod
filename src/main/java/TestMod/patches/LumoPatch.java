@@ -189,7 +189,8 @@ public class LumoPatch {
                     m.applyPowers();
                 });
             } else {
-                LumoPatch.ReduceReviveTime(1);
+                //LumoPatch.ReduceReviveTime(1);
+                //dont want the lumo to be automatically summoned
             }
 
         }

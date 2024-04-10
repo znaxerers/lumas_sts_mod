@@ -57,5 +57,13 @@
   "TestMod:TalismanBladeSpray": {
     "NAME": "Talisman Blade Spray",
     "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman to ALL enemies."
+  },
+  "TestMod:MembershipPunch": {
+    "NAME": "Membership Punch",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! TestMod:Membership."
+  },
+  "TestMod:ManualLabour": {
+    "NAME": "Manual Labour",
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Membership 3: NL Summon Bootleg Fumo."
   }
 }

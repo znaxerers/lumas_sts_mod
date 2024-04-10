@@ -1,8 +1,10 @@
 package TestMod.characters;
 
 import TestMod.cards.*;
+import TestMod.relics.LumaRelic;
 import TestMod.relics.TestRelic;
 import basemod.abstracts.CustomPlayer;
+import basemod.animations.AbstractAnimation;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -68,8 +70,8 @@ public class TheLuma extends CustomPlayer {
     public static final int STARTING_HP = 60;
     public static final int MAX_HP = 60;
     public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 3;
+    public static final int CARD_DRAW = 5;
+    public static final int ORB_SLOTS = 0;
 
     // =============== /BASE STATS/ =================
 
@@ -105,14 +107,14 @@ public class TheLuma extends CustomPlayer {
 
     public TheLuma(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
-                "TestModResources/images/char/defaultCharacter/orb/vfx.png", null,
-                new SpriterAnimation(
-                        "TestModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
+                "TestModResources/images/char/defaultCharacter/orb/vfx.png", null, (String) null);
+                //new SpriterAnimation(
+                //        "TestModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
 
         // =============== TEXTURES, ENERGY, LOADOUT =================
         logger.info("test");
-        initializeClass(null, // required call to load textures and setup energy/loadout.
+        initializeClass("TestModResources/images/char/defaultCharacter/luma_sprite_1.png", // required call to load textures and setup energy/loadout.
                 // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
                 THE_DEFAULT_SHOULDER_2, // campfire pose
                 THE_DEFAULT_SHOULDER_1, // another campfire pose
@@ -124,12 +126,12 @@ public class TheLuma extends CustomPlayer {
 
         // =============== ANIMATIONS =================
 
-        loadAnimation(
-                THE_DEFAULT_SKELETON_ATLAS,
-                THE_DEFAULT_SKELETON_JSON,
-                1.0f);
-        AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
+//        loadAnimation(
+//                THE_DEFAULT_SKELETON_ATLAS,
+//                THE_DEFAULT_SKELETON_JSON,
+//                1.0f);
+//        AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
+//        e.setTime(e.getEndTime() * MathUtils.random());
 
         // =============== /ANIMATIONS/ =================
 
@@ -164,13 +166,13 @@ public class TheLuma extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
+        retVal.add(MembershipPunch.ID);
 
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
-        retVal.add(Defend.ID);
+        retVal.add(ManualLabour.ID);
 
 //        retVal.add(DefaultCommonAttack.ID);
 //        logger.info("Card 1");
@@ -205,13 +207,13 @@ public class TheLuma extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(TestRelic.ID);
+        retVal.add(LumaRelic.ID);
 //        retVal.add(PlaceholderRelic2.ID);
 //        retVal.add(DefaultClickableRelic.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
-        UnlockTracker.markRelicAsSeen(TestRelic.ID);
+        UnlockTracker.markRelicAsSeen(LumaRelic.ID);
 //        UnlockTracker.markRelicAsSeen(PlaceholderRelic2.ID);
 //        UnlockTracker.markRelicAsSeen(DefaultClickableRelic.ID);
 

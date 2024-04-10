@@ -22,13 +22,20 @@
       "membership",
       "memberships"
     ],
-    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+    "DESCRIPTION": "Resource used to trigger extra effects. At #b40 #yMemberships, summon a #yLUMA #yFumo."
   },
   {
     "NAMES": [
       "talisman",
       "talismans"
     ],
-    "DESCRIPTION": "Whenever an enemy with #yTalisman gets attacked, loses HP equal to #yTalisman."
+    "DESCRIPTION": "Whenever an enemy with #yTalisman gets unblocked damage, loses HP equal to #yTalisman. At #b15 #yTalisman, remove #yTalisman and lose #b15 HP."
+  },
+  {
+    "NAMES": [
+      "Command",
+      "command"
+    ],
+    "DESCRIPTION": "Modify #yFumo(s) intention. This will disappear at the start of your turn. NL If #yMon3tr is dead, speed up its revive time by #b1 turn."
   }
 ]

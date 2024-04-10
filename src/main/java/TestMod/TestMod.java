@@ -174,20 +174,6 @@ public class TestMod implements
         // This is so that they are all "seen" in the library,
         // for people who like to look at the card list before playing your mod
 
-//        //Autoadd doesnt work
-//        BaseMod.addCard(new DefaultAttackWithVariable());
-//        BaseMod.addCard(new DefaultSecondMagicNumberSkill());
-//        BaseMod.addCard(new DefaultCommonAttack());
-//        BaseMod.addCard(new DefaultCommonPower());
-//        BaseMod.addCard(new DefaultCommonSkill());
-//        BaseMod.addCard(new DefaultUncommonAttack());
-//        BaseMod.addCard(new DefaultUncommonPower());
-//        BaseMod.addCard(new DefaultUncommonSkill());
-//        BaseMod.addCard(new DefaultRareAttack());
-//        BaseMod.addCard(new DefaultRarePower());
-//        BaseMod.addCard(new DefaultRareSkill());
-
-
         logger.info("Done adding cards!");
     }
     @Override
@@ -225,12 +211,12 @@ public class TestMod implements
         //BaseMod.addRelicToCustomPool(new TestRelic(), AbstractCard.CardColor.COLORLESS);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
-        BaseMod.addRelicToCustomPool(new TestRelic(), TheLuma.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new LumaRelic(), TheLuma.Enums.COLOR_GRAY);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
         // (the others are all starters so they're marked as seen in the character file)
-        UnlockTracker.markRelicAsSeen(TestRelic.ID);
+        UnlockTracker.markRelicAsSeen(LumaRelic.ID);
         logger.info("Done adding relics!");
     }
 

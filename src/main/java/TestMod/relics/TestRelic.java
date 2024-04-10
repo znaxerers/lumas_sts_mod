@@ -20,7 +20,7 @@ public class TestRelic extends CustomRelic {
     // ID, images, text.
     public static final String ID = TestMod.makeID("TestRelic");
 
-    private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("placeholder_relic.png"));
+    private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("luma_relic.png"));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("placeholder_relic.png"));
 
     public TestRelic() {
