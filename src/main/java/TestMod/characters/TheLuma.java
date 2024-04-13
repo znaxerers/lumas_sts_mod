@@ -3,6 +3,7 @@ package TestMod.characters;
 import TestMod.cards.*;
 import TestMod.relics.LumaRelic;
 import TestMod.relics.TestRelic;
+import TestMod.ui.LumaEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
 import basemod.animations.SpriterAnimation;
@@ -106,8 +107,9 @@ public class TheLuma extends CustomPlayer {
     // =============== CHARACTER CLASS START =================
 
     public TheLuma(String name, PlayerClass setClass) {
-        super(name, setClass, orbTextures,
-                "TestModResources/images/char/defaultCharacter/orb/vfx.png", null, (String) null);
+        super(name, setClass, new LumaEnergyOrb(orbTextures, "TestModResources/images/char/defaultCharacter/orb/vfx.png", null), null, null);
+        //super(name, setClass, orbTextures,
+        //        "TestModResources/images/char/defaultCharacter/orb/vfx.png", null, (String) null);
                 //new SpriterAnimation(
                 //        "TestModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 

@@ -55,7 +55,7 @@ public class Lumo extends AbstractMonster {
     private static final String NAME;
     private static final String[] MOVES;
     private static final String[] DIALOG;
-    private static final int MAX_HP = 40;
+    private static final int MAX_HP = 20;
     private static final float HB_X = 0.0F;
     private static final float HB_Y = 0.0F;
     private static final float HB_W = 200.0F;
@@ -73,7 +73,7 @@ public class Lumo extends AbstractMonster {
     protected AnimationInfo currentAnim;
 
     public Lumo() {
-        super(NAME, ID, 40, 0.0F, 0.0F, 200.0F, 250.0F, (String)null, 0.0F, 0.0F);
+        super(NAME, ID, 20, 0.0F, 0.0F, 80.0F, 250.0F, (String)null, 0.0F, 0.0F);
         this.isPlayer = true;
         this.damage.add(new DamageInfo(this, 3));
 //        SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
@@ -97,7 +97,7 @@ public class Lumo extends AbstractMonster {
         this.init();
         this.showHealthBar();
         this.createIntent();
-        GenericHelper.MoveMonster(this, AbstractDungeon.player.drawX + 200.0F * Settings.scale, AbstractDungeon.player.drawY + 100.0F * Settings.scale);
+        GenericHelper.MoveMonster(this, AbstractDungeon.player.drawX + 300.0F * Settings.scale, AbstractDungeon.player.drawY + 0.0F * Settings.scale);
     }
 
     public void addTip() {
@@ -115,13 +115,13 @@ public class Lumo extends AbstractMonster {
             case "Skill":
             case "Skill_2":
                 if (this.meltdownNextTurn) {
-                    this.addAnimation("Skill_2");
+                    //this.addAnimation("Skill_2");
                 } else {
-                    this.addAnimation(stateName);
+                    //this.addAnimation(stateName);
                 }
                 break;
             case "Die":
-                this.state.setAnimation(0, stateName, false);
+                //this.state.setAnimation(0, stateName, false);
         }
 
     }
@@ -444,23 +444,23 @@ public class Lumo extends AbstractMonster {
             this.flipHorizontal = AbstractDungeon.player.flipHorizontal;
         }
 
-        if (this.animationList.size() > 0 || this.currentAnim != null) {
-            this.animationTimer -= Gdx.graphics.getDeltaTime();
-            if (this.animationTimer <= 0.0F) {
-                if (this.currentAnim != null) {
-                    this.animationList.remove(0);
-                }
-
-                if (this.animationList.size() == 0) {
-                    this.state.addAnimation(0, "Idle", true, 0.0F);
-                    this.currentAnim = null;
-                } else {
-                    this.currentAnim = (AnimationInfo)this.animationList.get(0);
-                    this.animationTimer = this.currentAnim.time;
-                    this.state.setAnimation(0, this.currentAnim.anim, false);
-                }
-            }
-        }
+//        if (this.animationList.size() > 0 || this.currentAnim != null) {
+//            this.animationTimer -= Gdx.graphics.getDeltaTime();
+//            if (this.animationTimer <= 0.0F) {
+//                if (this.currentAnim != null) {
+//                    this.animationList.remove(0);
+//                }
+//
+//                if (this.animationList.size() == 0) {
+//                    this.state.addAnimation(0, "Idle", true, 0.0F);
+//                    this.currentAnim = null;
+//                } else {
+//                    this.currentAnim = (AnimationInfo)this.animationList.get(0);
+//                    this.animationTimer = this.currentAnim.time;
+//                    this.state.setAnimation(0, this.currentAnim.anim, false);
+//                }
+//            }
+//        }
 
     }
 

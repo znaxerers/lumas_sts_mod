@@ -9,12 +9,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import static TestMod.TestMod.makeCardPath;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
@@ -103,7 +105,10 @@ public class ManualLabour extends AbstractDynamicCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
 
-        LumoPatch.ReduceReviveTime(5);
+        if (canPayment()) {
+            LumoPatch.ReduceReviveTime(5);
+            this.addToBot(new ReducePowerAction(p, p, "TestMod:MembershipPower", MEMBERSHIP_REQUIRED));
+        }
     }
 
     // Upgraded stats.
@@ -115,4 +120,60 @@ public class ManualLabour extends AbstractDynamicCard {
             initializeDescription();
         }
     }
+
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (canPayment()) {
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
+
+    }
+
+    public void superUse(AbstractPlayer p, AbstractMonster m) {
+        if (this.canPayment()) {
+            //this.bloodUse(p, m);
+        }
+    }
+
+    public void applyPowers() {
+        super.applyPowers();
+//        AbstractPlayer p = AbstractDungeon.player;
+//        if (this.baseAttackTime > 0) {
+//            this.attackTime = this.baseAttackTime;
+//            if (p.hasRelic("SpecialGloves_Elena")) {
+//                ++this.attackTime;
+//            }
+//        }
+
+//        this.bloodMagic = this.canBloodMagic();
+        this.triggerOnGlowCheck();
+
+    }
+
+//    public void calculateCardDamage(AbstractMonster mo) {
+//        super.calculateCardDamage(mo);
+//        AbstractPlayer p = AbstractDungeon.player;
+//        if (this.baseAttackTime > 0) {
+//            this.attackTime = this.baseAttackTime;
+//            if (p.hasRelic("SpecialGloves_Elena")) {
+//                ++this.attackTime;
+//            }
+//        }
+//    }
+
+    public boolean canPayment() {
+        AbstractPlayer p = AbstractDungeon.player;
+        if (MEMBERSHIP_REQUIRED <= 0) {
+            return false;
+        } else {
+            return p.hasPower("TestMod:MembershipPower") && p.getPower("TestMod:MembershipPower").amount >= MEMBERSHIP_REQUIRED;
+        }
+    }
+
+//    public void bloodUse(AbstractPlayer p, AbstractMonster m) {
+//        if (!p.hasPower("BloodfiendFormPower_Elena")) {
+//            this.addToBot(new ReducePowerAction(p, p, "BloodPower_Elena", this.bloodCost));
+//        }
+//    }
+
 }

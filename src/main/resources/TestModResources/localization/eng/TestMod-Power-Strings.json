@@ -9,7 +9,7 @@
 },
 "TestMod:TalismanPower": {
         "NAME": "Talisman",
-        "DESCRIPTIONS": ["Upon receiving attack damage, lose #b", " HP. At #b" , " #yTalisman, reduce to #b", " HP."]
+        "DESCRIPTIONS": ["Upon receiving attack damage, lose #b", " HP. At #b" , " #yTalisman, remove #b", " HP and #yTalisman."]
 },
 "TestMod:MembershipPower": {
         "NAME": "Membership",

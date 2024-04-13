@@ -64,6 +64,6 @@
   },
   "TestMod:ManualLabour": {
     "NAME": "Manual Labour",
-    "DESCRIPTION": "Gain !B! Block. NL TestMod:Membership 3: NL Summon Bootleg Fumo."
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 3: NL Summon Bootleg Fumo."
   }
 }

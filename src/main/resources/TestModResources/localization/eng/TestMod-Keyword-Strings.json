@@ -26,6 +26,12 @@
   },
   {
     "NAMES": [
+      "payment"
+    ],
+    "DESCRIPTION": "Uses #yMemberships to trigger extra effects."
+  },
+  {
+    "NAMES": [
       "talisman",
       "talismans"
     ],

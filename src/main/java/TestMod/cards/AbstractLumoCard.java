@@ -17,65 +17,18 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import java.util.function.Function;
 
 public abstract class AbstractLumoCard extends CustomCard { // implements EventHelper.CustomSubscriber {
+    public int membershipCost = -1;
+    public boolean paymentBool;
+
     public int baseSecondaryMagicNum;
     public int SecondaryMagicNum;
     public boolean upgradedSecondaryMagicNum;
     public boolean isSecondaryMagicNumModified;
     public CardStrings strings;
 
-    public AbstractLumoCard(String ID, CardStrings strings, int COST, AbstractCard.CardType TYPE, AbstractCard.CardRarity RARITY, AbstractCard.CardTarget TARGET) {
-        this(ID, false, strings, COST, TYPE, RARITY, TARGET);
-    }
-
-    public AbstractLumoCard(String ID, boolean useTmpArt, CardStrings strings, int COST, AbstractCard.CardType TYPE, AbstractCard.CardRarity RARITY, AbstractCard.CardTarget TARGET) {
-        super(ID, strings.NAME, useTmpArt ? GetTmpImgPath(TYPE) : GetImgPath(TYPE, ID), COST, strings.DESCRIPTION, TYPE, Enums.COLOR_GRAY, RARITY, TARGET);
+    public AbstractLumoCard(String ID, String IMG, CardStrings strings, int COST, AbstractCard.CardType TYPE, AbstractCard.CardRarity RARITY, AbstractCard.CardTarget TARGET) {
+        super(ID, strings.NAME, IMG, COST, strings.DESCRIPTION, TYPE, Enums.COLOR_GRAY, RARITY, TARGET);
         this.strings = strings;
-    }
-
-    private static String GetTmpImgPath(AbstractCard.CardType t) {
-        String type;
-        switch (t) {
-            case ATTACK:
-                type = "attack";
-                break;
-            case POWER:
-                type = "power";
-                break;
-            case STATUS:
-            case CURSE:
-            case SKILL:
-                type = "skill";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + t);
-        }
-
-        return String.format("KaltsitResources/img/card/test_%s.png", type);
-    }
-
-    private static String GetImgPath(AbstractCard.CardType t, String name) {
-        String type;
-        switch (t) {
-            case ATTACK:
-                type = "attack";
-                break;
-            case POWER:
-                type = "power";
-                break;
-            case STATUS:
-                type = "status";
-                break;
-            case CURSE:
-                type = "curse";
-                break;
-            case SKILL:
-                type = "skill";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + t);
-        }
-
-        return String.format("KaltsitResources/img/card/%s/%s.png", type, name.replace("Kaltsit_", ""));
     }
 
     protected void setupDamage(int amt) {
@@ -191,7 +144,6 @@ public abstract class AbstractLumoCard extends CustomCard { // implements EventH
             this.limitedUpgrade();
             this.initializeDescription();
         }
-
     }
 }
 
