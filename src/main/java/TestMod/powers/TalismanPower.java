@@ -55,6 +55,13 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
 //
 //    }
 
+    public void triggerTalisman(AbstractCard card) {
+        if (card.cardID.equals("TestMod:LumaBlast")) {
+            this.addToBot(new LoseHPAction(this.owner, (AbstractCreature)null, this.amount, AbstractGameAction.AttackEffect.FIRE));
+        }
+
+    }
+
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (damageAmount < this.owner.currentHealth && damageAmount > 0 && info.owner != null && info.type == DamageInfo.DamageType.NORMAL && info.type != DamageInfo.DamageType.HP_LOSS) {

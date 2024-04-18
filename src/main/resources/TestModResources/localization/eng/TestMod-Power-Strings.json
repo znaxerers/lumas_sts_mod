@@ -14,5 +14,9 @@
 "TestMod:MembershipPower": {
         "NAME": "Membership",
         "DESCRIPTIONS": ["Resource used for #yMembership cards. At #b", " #yMembership, summon LUMA Fumo."]
+},
+"TestMod:DrivePower": {
+        "NAME": "Drive",
+        "DESCRIPTIONS": ["At the start of your turn, gain #b", " #yMembership."]
 }
 }

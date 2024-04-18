@@ -64,6 +64,22 @@
   },
   "TestMod:ManualLabour": {
     "NAME": "Manual Labour",
-    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 3: NL Summon Bootleg Fumo."
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 3: NL Summon Bootleg Lumo."
+  },
+  "TestMod:PotLuck": {
+    "NAME": "Pot Luck",
+    "DESCRIPTION": "Put !M! random Skills from your discard pile into your hand."
+  },
+  "TestMod:Mockery": {
+    "NAME": "Mockery",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for every 4 TestMod:Membership."
+  },
+  "TestMod:LumaBlast": {
+    "NAME": "Luma Blast",
+    "DESCRIPTION": "Deal !D! damage. NL ALL enemies lose HP equal to their TestMod:Talisman."
+  },
+  "TestMod:MembershipDrive": {
+    "NAME": "Membership Drive",
+    "DESCRIPTION": "At the start of your turn, gain !M! TestMod:Membership."
   }
 }

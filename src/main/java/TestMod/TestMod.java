@@ -14,10 +14,7 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.*;
@@ -193,6 +190,12 @@ public class TestMod implements
         // PowerStrings
         BaseMod.loadCustomStringsFile(PowerStrings.class,
                 getModID() + "Resources/localization/eng/TestMod-Power-Strings.json");
+
+        BaseMod.loadCustomStringsFile(MonsterStrings.class,
+                getModID() + "Resources/localization/eng/TestMod-Lumo-Strings.json");
+
+
+
         logger.info("Done testing strings");
     }
 

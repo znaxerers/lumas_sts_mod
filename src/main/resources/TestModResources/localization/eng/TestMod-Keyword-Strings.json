@@ -42,6 +42,6 @@
       "Command",
       "command"
     ],
-    "DESCRIPTION": "Modify #yFumo(s) intention. This will disappear at the start of your turn. NL If #yMon3tr is dead, speed up its revive time by #b1 turn."
+    "DESCRIPTION": "Modify #yLumo(s) intention. This will disappear at the start of your turn."
   }
 ]
