@@ -1,5 +1,6 @@
 package TestMod.cards;
 
+import basemod.AutoAdd;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +13,7 @@ import TestMod.actions.UncommonPowerAction;
 import TestMod.characters.TheLuma;
 
 import static TestMod.TestMod.makeCardPath;
-
+//@AutoAdd.Ignore
 public class DefaultUncommonPower extends AbstractDynamicCard {
 
     /*

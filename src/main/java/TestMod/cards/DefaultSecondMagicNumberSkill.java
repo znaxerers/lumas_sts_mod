@@ -1,5 +1,6 @@
 package TestMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -13,6 +14,7 @@ import TestMod.characters.TheLuma;
 
 import static TestMod.TestMod.makeCardPath;
 
+//@AutoAdd.Ignore
 public class DefaultSecondMagicNumberSkill extends AbstractDynamicCard {
 
     /*

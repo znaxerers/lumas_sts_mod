@@ -1,6 +1,8 @@
 package TestMod.patches;
 
 import TestMod.characters.Lumo;
+import TestMod.characters.Lumo1;
+import TestMod.characters.Lumo2;
 import TestMod.characters.TheLuma.Enums;
 import TestMod.helper.GenericHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -32,6 +34,14 @@ public class LumoPatch {
         return AbstractDungeon.player == null ? null : (Lumo)TestMod.patches.LumoPatch.LumoFields.Lumo.get(AbstractDungeon.player);
     }
 
+    public static Lumo1 Inst1() {
+        return AbstractDungeon.player == null ? null : (Lumo1)TestMod.patches.LumoPatch.LumoFields1.Lumo1.get(AbstractDungeon.player);
+    }
+
+//    public static Lumo2 Inst2() {
+//        return AbstractDungeon.player == null ? null : (Lumo2)TestMod.patches.LumoPatch.LumoFields.Lumo2.get(AbstractDungeon.player);
+//    }
+
     public static void ReduceReviveTime(int amt) {
         if (AbstractDungeon.player.chosenClass == Enums.THE_LUMA || AbstractDungeon.player.hasRelic("PrismaticShard")) {
             ReviveTimer -= amt;
@@ -50,6 +60,14 @@ public class LumoPatch {
                 } else {
                     CardCrawlGame.sound.play("BUFF_3");
                 }
+
+                return;
+            }
+            if (Inst1() == null) {
+                TestMod.patches.LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, new Lumo1());
+                ((Lumo)Objects.requireNonNull(Inst())).spawn();
+
+                return;
             }
         }
 
@@ -70,6 +88,33 @@ public class LumoPatch {
 
     @SpirePatch(
             clz = AbstractPlayer.class,
+            method = "<class>"
+    )
+    public static class LumoFields1 {
+        public static SpireField<Lumo1> Lumo1 = new SpireField(() -> {
+            return null;
+        });
+
+        public LumoFields1() {
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractPlayer.class,
+            method = "<class>"
+    )
+    public static class LumoFields2 {
+
+        public static SpireField<Lumo2> Lumo2 = new SpireField(() -> {
+            return null;
+        });
+
+        public LumoFields2() {
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractPlayer.class,
             method = "renderHoverReticle"
     )
     public static class ReticlePatch {
@@ -78,16 +123,25 @@ public class LumoPatch {
 
         public static void Postfix(AbstractPlayer _inst, SpriteBatch sb) {
             Lumo m;
+            Lumo1 m1;
             if (_inst.hoveredCard.target == Enums.SELF_AND_LUMO) {
                 _inst.renderReticle(sb);
                 m = LumoPatch.Inst();
                 if (m != null) {
                     m.renderReticle(sb);
                 }
+                m1 = LumoPatch.Inst1();
+                if (m1 != null) {
+                    m1.renderReticle(sb);
+                }
             } else if (_inst.hoveredCard.target == Enums.LUMO) {
                 m = LumoPatch.Inst();
                 if (m != null) {
                     m.renderReticle(sb);
+                }
+                m1 = LumoPatch.Inst1();
+                if (m1 != null) {
+                    m1.renderReticle(sb);
                 }
             }
 
@@ -108,6 +162,9 @@ public class LumoPatch {
         public static void Insert(AbstractMonster _inst, SpriteBatch sb) {
             if (_inst instanceof Lumo) {
                 ((Lumo)_inst).addTip();
+            }
+            if (_inst instanceof Lumo1) {
+                ((Lumo1)_inst).addTip();
             }
 
         }
@@ -137,8 +194,11 @@ public class LumoPatch {
                 if (m != null) {
                     m.applyPowers();
                 }
+                Lumo1 m1 = LumoPatch.Inst1();
+                if (m1 != null) {
+                    m1.applyPowers();
+                }
             }
-
         }
     }
 
@@ -156,7 +216,11 @@ public class LumoPatch {
                 m.takeTurn();
                 m.applyEndOfTurnTriggers();
             }
-
+            Lumo1 m1 = LumoPatch.Inst1();
+            if (m1 != null) {
+                m1.takeTurn();
+                m1.applyEndOfTurnTriggers();
+            }
         }
     }
 
@@ -188,10 +252,28 @@ public class LumoPatch {
                     m.damageTimes = 1;
                     m.applyPowers();
                 });
-            } else {
-                //LumoPatch.ReduceReviveTime(1);
-                //dont want the lumo to be automatically summoned
             }
+            Lumo1 m1 = LumoPatch.Inst1();
+            if (m1 != null) {
+                if (!m1.hasPower("Barricade") && !m1.hasPower("Blur")) {
+                    m1.loseBlock();
+                }
+
+                m1.applyStartOfTurnPowers();
+                m1.applyStartOfTurnPostDrawPowers();
+                GenericHelper.addToBotAbstract(() -> {
+                    m1.gainBlockNextTurn = false;
+                    m1.damageToAllNextTurn = false;
+                    m1.damageToLowestNextTurn = false;
+                    m1.meltdownNextTurn = false;
+                    m1.damageTimes = 1;
+                    m1.applyPowers();
+                });
+            }
+            // else {
+//                //LumoPatch.ReduceReviveTime(1);
+//                //dont want the lumo to be automatically summoned
+//            }
 
         }
     }
@@ -207,9 +289,11 @@ public class LumoPatch {
         public static void Postfix(AbstractPlayer _inst) {
             if (AbstractDungeon.player.chosenClass != Enums.THE_LUMA && !AbstractDungeon.player.hasRelic("PrismaticShard")) {
                 LumoPatch.LumoFields.Lumo.set(AbstractDungeon.player, (Lumo)null); //(Object)null);
+                LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, (Lumo1)null);
                 //MonsterPatch.Mon3trFields.Calcite.set(AbstractDungeon.player, (Object)null);
             } else {
                 LumoPatch.LumoFields.Lumo.set(AbstractDungeon.player, (Lumo)null); //(Object)null);
+                LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, (Lumo1)null);
                 //MonsterPatch.Mon3trFields.Calcite.set(AbstractDungeon.player, new CalciteModel());
 //                if (_inst.hasRelic(Calcite.ID)) {
                 LumoPatch.ReviveTimer = 2;
@@ -238,7 +322,13 @@ public class LumoPatch {
                 Lumo m = LumoPatch.Inst();
                 if (m != null) {
                     m.render(sb);
-                } //else {
+                }
+                Lumo1 m1 = LumoPatch.Inst1();
+                if (m1 != null) {
+                    m1.render(sb);
+                }
+
+                //else {
 //                    CalciteModel mod = (CalciteModel)MonsterPatch.Mon3trFields.Calcite.get(AbstractDungeon.player);
 //                    if (mod != null) {
 //                        mod.render(sb);
@@ -265,7 +355,18 @@ public class LumoPatch {
                 if (m.isDead) {
                     LumoPatch.LumoFields.Lumo.set(AbstractDungeon.player, (Lumo)null); //(Object)null);
                 }
-            } //else {
+            }
+            Lumo1 m1 = LumoPatch.Inst1();
+            if (m1 != null) {
+                m1.update();
+                m1.updateAnimations();
+                if (m1.isDead) {
+                    LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, (Lumo1)null); //(Object)null);
+                }
+            }
+
+
+            //else {
 //                CalciteModel mod = (CalciteModel)MonsterPatch.Mon3trFields.Calcite.get(AbstractDungeon.player);
 //                if (mod != null) {
 //                    mod.update();

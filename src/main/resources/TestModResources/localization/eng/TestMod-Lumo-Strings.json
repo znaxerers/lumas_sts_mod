@@ -15,5 +15,22 @@
             "Lumo",
             "Enemies will attack #yLumo first, and the #yBlock you gain will be given to #yLumo. NL You will receive #b3 damage when #yLumo dies."
         ]
+    },
+    "TestMod:Lumo1": {
+        "NAME": "Lumo",
+        "MOVES": [
+            "Stab",
+            " #yLumo will deal #bD damage to random enemy.",
+            "Strike",
+            " #yLumo will deal #bD damage to the enemy with the lowest HP.",
+            "Tactical Coordination",
+            " #yLumo will deal #bD damage to ALL enemies.",
+            "Structural Strengthening",
+            " #yLumo will gain #bD  #yBlock ."
+        ],
+        "DIALOG": [
+            "Lumo",
+            "Enemies will attack #yLumo first, and the #yBlock you gain will be given to #yLumo. NL You will receive #b3 damage when #yLumo dies."
+        ]
     }
 }

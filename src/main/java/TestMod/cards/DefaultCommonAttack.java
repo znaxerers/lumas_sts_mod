@@ -27,7 +27,7 @@ import static TestMod.TestMod.makeCardPath;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-@AutoAdd.Ignore
+//@AutoAdd.Ignore
 public class DefaultCommonAttack extends CustomCard {
 
     /*

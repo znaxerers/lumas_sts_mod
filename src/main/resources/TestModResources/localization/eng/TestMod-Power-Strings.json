@@ -18,5 +18,13 @@
 "TestMod:DrivePower": {
         "NAME": "Drive",
         "DESCRIPTIONS": ["At the start of your turn, gain #b", " #yMembership."]
+},
+"TestMod:HeavyBurdenPower": {
+        "NAME": "Heavy Burden",
+        "DESCRIPTIONS": ["Whenever you draw a #yStatus or #yCurse card, gain #b", " #yMembership."]
+},
+"TestMod:HypnoticEyesPower": {
+        "NAME": "Hypnotic Eyes",
+        "DESCRIPTIONS": ["Whenever an Attack deals unblocked damage this turn, apply ", " #yTalisman."]
 }
 }

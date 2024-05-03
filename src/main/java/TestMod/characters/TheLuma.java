@@ -116,7 +116,7 @@ public class TheLuma extends CustomPlayer {
 
         // =============== TEXTURES, ENERGY, LOADOUT =================
         logger.info("test");
-        initializeClass("TestModResources/images/char/defaultCharacter/luma_sprite_1.png", // required call to load textures and setup energy/loadout.
+        initializeClass("TestModResources/images/char/defaultCharacter/luma_sprite_2.png", // required call to load textures and setup energy/loadout.
                 // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
                 THE_DEFAULT_SHOULDER_2, // campfire pose
                 THE_DEFAULT_SHOULDER_1, // another campfire pose

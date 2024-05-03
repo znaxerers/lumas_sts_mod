@@ -35,7 +35,7 @@
       "talisman",
       "talismans"
     ],
-    "DESCRIPTION": "Whenever an enemy with #yTalisman gets unblocked damage, loses HP equal to #yTalisman. At #b15 #yTalisman, remove #yTalisman and lose #b15 HP."
+    "DESCRIPTION": "Whenever an enemy with #yTalisman gets unblocked damage, loses HP equal to #yTalisman. At #b15+ #yTalisman at the end of turn, remove #yTalisman and lose HP equal to #yTalisman removed."
   },
   {
     "NAMES": [

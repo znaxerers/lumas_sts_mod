@@ -126,7 +126,6 @@ public class ManualLabour extends AbstractDynamicCard {
         if (canPayment()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
-
     }
 
     public void superUse(AbstractPlayer p, AbstractMonster m) {

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import TestMod.TestMod;
 import TestMod.cards.DefaultRareAttack;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import util.TextureLoader;
 public class TalismanPower extends AbstractPower implements CloneablePowerInterface {
     public AbstractCreature source;
@@ -78,11 +80,25 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        if (this.amount >= 15) {
-            this.addToBot(new LoseHPAction(this.owner, this.owner, 15, AbstractGameAction.AttackEffect.LIGHTNING));
-            this.amount -= 15;
-            if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+//        if (this.amount >= 15) {
+//            this.addToBot(new LoseHPAction(this.owner, this.owner, 15, AbstractGameAction.AttackEffect.LIGHTNING));
+//            this.amount -= 15;
+//            if (this.amount <= 0) {
+//                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+//            }
+//        }
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+            if (this.amount >= 15) {
+                this.flashWithoutSound();
+                this.addToBot(new LoseHPAction(this.owner, this.owner, this.amount, AbstractGameAction.AttackEffect.FIRE));
+                this.amount -= this.amount;
+                if (this.amount <= 0) {
+                    this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+                }
             }
         }
     }

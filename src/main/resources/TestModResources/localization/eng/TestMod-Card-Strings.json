@@ -81,5 +81,41 @@
   "TestMod:MembershipDrive": {
     "NAME": "Membership Drive",
     "DESCRIPTION": "At the start of your turn, gain !M! TestMod:Membership."
+  },
+  "TestMod:InsaneHunger": {
+    "NAME": "Insane Hunger",
+    "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman twice."
+  },
+  "TestMod:Moneyshot": {
+    "NAME": "Moneyshot",
+    "DESCRIPTION": "Deal !D! damage. NL Double the enemy's TestMod:Talisman."
+  },
+  "TestMod:AlumniLinkup": {
+    "NAME": "Alumni Linkup",
+    "DESCRIPTION": "Deal !D! damage. NL At 15+ TestMod:Membership, deal !M! more damage."
+  },
+  "TestMod:PunchDrunk": {
+    "NAME": "Punch Drunk",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has TestMod:Talisman, apply !M! TestMod:Talisman."
+  },
+  "TestMod:Collaboration": {
+    "NAME": "Collaboration",
+    "DESCRIPTION": "Deal damage equal to your TestMod:Membership. NL (Deal !D! damage.)"
+  },
+  "TestMod:BadCosplay": {
+    "NAME": "Bad Cosplay",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! TestMod:Talisman to ALL enemies. NL Exhaust."
+  },
+  "TestMod:CuttingWords": {
+    "NAME": "Cutting Words",
+    "DESCRIPTION": " Deal !D! damage to ALL enemies. NL TestMod:Payment 4: NL Apply !M! Vulnerable to ALL enemies."
+  },
+  "TestMod:HeavyBurden": {
+    "NAME": "Heavy Burden",
+    "DESCRIPTION": "Whenever you draw a Status or Curse card, gain !M! TestMod:Membership."
+  },
+  "TestMod:HypnoticEyes": {
+    "NAME": "Hypnotic Eyes",
+    "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply 1 TestMod:Talisman."
   }
 }
