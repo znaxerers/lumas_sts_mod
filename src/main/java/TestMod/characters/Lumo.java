@@ -3,6 +3,7 @@ package TestMod.characters;
 import TestMod.characters.TheLuma.Enums;
 import TestMod.helper.GenericHelper;
 //import KaltsitMod.modcore.KaltsitModCore;
+import TestMod.helper.LumoImageMaster;
 import TestMod.patches.LumoPatch;
 //import KaltsitMod.powers.CantAttackPower;
 //import KaltsitMod.powers.NonDamagingRestructuringPower;
@@ -33,6 +34,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -48,6 +50,7 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Set;
 
 public class Lumo extends AbstractMonster {
     public static final String ID = TestMod.makeID(Lumo.class.getSimpleName());
@@ -55,7 +58,7 @@ public class Lumo extends AbstractMonster {
     private static final String NAME;
     private static final String[] MOVES;
     private static final String[] DIALOG;
-    private static final int MAX_HP = 20;
+    private static final int MAX_HP = 10;
     private static final float HB_X = 0.0F;
     private static final float HB_Y = 0.0F;
     private static final float HB_W = 200.0F;
@@ -68,12 +71,13 @@ public class Lumo extends AbstractMonster {
     public boolean damageToAllNextTurn = false;
     public boolean damageToLowestNextTurn = false;
     public int damageTimes = 1;
+    public int lumoLevel = 0;
     protected ArrayList<AnimationInfo> animationList = new ArrayList();
     protected float animationTimer = 0.0F;
     protected AnimationInfo currentAnim;
 
     public Lumo() {
-        super(NAME, ID, 20, 0.0F, 0.0F, 80.0F, 250.0F, (String)null, 0.0F, 0.0F);
+        super(NAME, ID, 15, 0.0F, 0.0F, 80.0F, 250.0F, (String)null, 0.0F, 0.0F);
         this.isPlayer = true;
         this.damage.add(new DamageInfo(this, 3));
 //        SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
@@ -81,7 +85,7 @@ public class Lumo extends AbstractMonster {
 //        this.loadAnimation("TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".atlas", "TestModResources/images/char/token_10002_kalts_mon3tr_2" + ".json", 1.8F);
 //        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
 //        e.setTime(e.getEndTime() * MathUtils.random());
-        this.img = new Texture("TestModResources/images/char/Lumo.png");
+        this.img = new Texture("TestModResources/images/char/bootlegLumo.png");
     }
 
     public void spawn() {
@@ -173,6 +177,9 @@ public class Lumo extends AbstractMonster {
 //                return;
 //            }
 
+
+            //check for current state?
+
             DamageInfo.DamageType type = this.meltdownNextTurn ? DamageType.HP_LOSS : DamageType.NORMAL;
             ((DamageInfo)this.damage.get(0)).type = type;
             AbstractGameAction.AttackEffect effect = this.meltdownNextTurn ? AttackEffect.FIRE : (((DamageInfo)this.damage.get(0)).output > 20 ? AttackEffect.SLASH_HORIZONTAL : AttackEffect.SLASH_HEAVY);
@@ -242,7 +249,7 @@ public class Lumo extends AbstractMonster {
     public void die(boolean triggerRelic) {
         this.powers.forEach(AbstractPower::onDeath);
         this.changeState("Die");
-        this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 3, DamageType.THORNS)));
+//        this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, 3, DamageType.THORNS)));
 //        if (AbstractDungeon.player.hasPower(NonDamagingRestructuringPower.id)) {
 //            int intentDmg = (Integer)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentDmg");
 //            this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(intentDmg), DamageType.THORNS, AttackEffect.FIRE));
@@ -320,10 +327,19 @@ public class Lumo extends AbstractMonster {
 
     public void damage(DamageInfo info) {
         float damageAmount = (float)info.output;
+
+//        if (this.isDying) {
+//            this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, (int)damageAmount, info.type)));
+//        }
+        // add half damage receival
+
         if (!this.isDying) {
             if (damageAmount < 0.0F) {
                 damageAmount = 0.0F;
             }
+
+//            this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, (int)damageAmount/2, info.type)));
+            // commentted out because ash wants it to be perfect block
 
             boolean hadBlock = this.currentBlock != 0;
             boolean weakenedToZero = damageAmount == 0.0F;
@@ -402,6 +418,7 @@ public class Lumo extends AbstractMonster {
 
             if (this.currentHealth <= 0) {
                 this.die();
+                this.addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, (int)damageAmount - this.maxHealth, info.type)));
                 if (this.currentBlock > 0) {
                     this.loseBlock();
                     AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
@@ -432,6 +449,28 @@ public class Lumo extends AbstractMonster {
 
     public void addAnimation(String anim) {
         this.animationList.add(new AnimationInfo(anim, this.stateData.getSkeletonData().findAnimation(anim).getDuration()));
+    }
+
+    public void levelUp() {
+        this.lumoLevel++;
+
+        if (lumoLevel > 2) {
+            lumoLevel = 2;
+            return;
+        }
+
+        if (this.maxHealth == 15) this.maxHealth = 10;
+
+        this.img = LumoImageMaster.LUMO_LEVEL[lumoLevel];
+        this.increaseMaxHp(this.maxHealth, true);
+        this.hb_w += this.hb_w;
+        this.intentHb.height += 100.0F;
+
+        this.intentHb = new Hitbox(intentHb.height, this.intentHb.width);
+        this.hb = new Hitbox(this.hb_w, this.hb_h);
+        this.healthHb = new Hitbox(this.hb_w, 72.0F * Settings.scale);
+        this.refreshHitboxLocation();
+        this.refreshIntentHbLocation();
     }
 
     public void update() {

@@ -7,6 +7,7 @@ import TestMod.helper.GenericHelper;
 import TestMod.patches.LumoPatch;
 //import KaltsitMod.powers.ChipPower;
 //import KaltsitMod.powers.DrusePower;
+import TestMod.powers.ChipPower;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -104,7 +105,7 @@ public abstract class AbstractLumoCard extends CustomCard { // implements EventH
     public void applyLumoFirst(Function<AbstractCreature, AbstractPower> func, boolean code) {
         GenericHelper.addToBotAbstract(() -> {
             if (code) {
-                LumoPatch.ReduceReviveTime(1);
+                //LumoPatch.ReduceReviveTime(1);
             }
 
             Lumo m = LumoPatch.Inst();
@@ -117,22 +118,26 @@ public abstract class AbstractLumoCard extends CustomCard { // implements EventH
         });
     }
 
-    public void applyChipPowerToMon3tr(int amt) {
-        this.applyChipPowerToMon3tr(amt, true);
+    public void applyChipPowerToLumo(int amt) {
+        this.applyChipPowerToLumo(amt, true);
     }
 
-    public void applyChipPowerToMon3tr(int amt, boolean code) {
+    public void applyChipPowerToLumo(int amt, boolean code) {
         GenericHelper.addToBotAbstract(() -> {
             if (code) {
-                LumoPatch.ReduceReviveTime(1);
+                //LumoPatch.ReduceReviveTime(1);
             }
 
             Lumo m = LumoPatch.Inst();
             if (m != null) {
-                //GenericHelper.addToNext(new ApplyPowerAction(m, m, new ChipPower(m, amt)));
+                GenericHelper.addToNext(new ApplyPowerAction(m, m, new ChipPower(m, amt)));
             }
 
         });
+    }
+
+    public void upgradeLumo() {
+
     }
 
     public void limitedUpgrade() {

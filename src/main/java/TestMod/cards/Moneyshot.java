@@ -48,6 +48,7 @@ public class Moneyshot extends AbstractDynamicCard {
     public static final CardColor COLOR = TheLuma.Enums.COLOR_GRAY;
 
     private static final int COST = 2;  // COST = ${COST}
+    private static final int UPGRADE_PLUS_COST = 1;  // COST = ${COST}
 
     private static final int DAMAGE = 9;    // DAMAGE = ${DAMAGE}
     private static final int UPGRADE_PLUS_DMG = 7;  // UPGRADE_PLUS_DMG = ${UPGRADED_DAMAGE_INCREASE}
@@ -76,6 +77,7 @@ public class Moneyshot extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeBaseCost(UPGRADE_PLUS_COST);
             initializeDescription();
         }
     }

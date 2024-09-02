@@ -35,7 +35,7 @@ public class ManualLabour extends AbstractDynamicCard {
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
      *
-     * Membership Punch Deal 8(10) damage. Spend 3 Membership.
+     * Manual Labour Gain 9 (13) Block. Payment 3: Summon Bootleg Fumo.
      */
 
     // TEXT DECLARATION
@@ -107,6 +107,10 @@ public class ManualLabour extends AbstractDynamicCard {
 
         if (canPayment()) {
             LumoPatch.ReduceReviveTime(5);
+            if (p.hasPower("TestMod:ClubPreservationPower")) {
+                p.getPower("TestMod:ClubPreservationPower").flash();
+                return;
+            }
             this.addToBot(new ReducePowerAction(p, p, "TestMod:MembershipPower", MEMBERSHIP_REQUIRED));
         }
     }

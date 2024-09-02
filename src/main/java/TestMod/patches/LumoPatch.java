@@ -63,12 +63,12 @@ public class LumoPatch {
 
                 return;
             }
-            if (Inst1() == null) {
-                TestMod.patches.LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, new Lumo1());
-                ((Lumo)Objects.requireNonNull(Inst())).spawn();
-
-                return;
-            }
+//            if (Inst1() == null) {
+//                TestMod.patches.LumoPatch.LumoFields1.Lumo1.set(AbstractDungeon.player, new Lumo1());
+//                ((Lumo)Objects.requireNonNull(Inst())).spawn();
+//
+//                return;
+//            } //no longer adding multiple fumos
         }
 
     }

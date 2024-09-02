@@ -61,7 +61,7 @@ public class ClubPreservationPower extends AbstractPower implements CloneablePow
         if (amount == 1) {
             description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
         } else if (amount > 1) {
-            description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
         }
     }
 

@@ -105,6 +105,7 @@ public class AlumniLinkup extends AbstractDynamicCard {
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
         AbstractPlayer p = AbstractDungeon.player;
         if (canPayment()) {
             this.damage = this.damage + this.magicNumber;

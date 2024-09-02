@@ -1,6 +1,7 @@
 package TestMod;
 
 import TestMod.cards.*;
+import TestMod.helper.LumoImageMaster;
 import TestMod.variables.*;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -41,7 +42,8 @@ public class TestMod implements
         EditKeywordsSubscriber,
         PostExhaustSubscriber,
         PostBattleSubscriber,
-        PostDungeonInitializeSubscriber {
+        PostDungeonInitializeSubscriber,
+        PostInitializeSubscriber {
 
     private int count, totalCount;
     public static final Logger logger = LogManager.getLogger(TestMod.class.getName());
@@ -254,6 +256,10 @@ public class TestMod implements
                 //  getModID().toLowerCase() makes your keyword mod specific (it won't show up in other cards that use that word)
             }
         }
+    }
+
+    public void receivePostInitialize() {
+        LumoImageMaster.initialize();
     }
 
     public static void setModID(String ID) { // DON'T EDIT

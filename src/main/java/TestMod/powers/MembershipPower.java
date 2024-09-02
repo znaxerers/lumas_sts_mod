@@ -1,6 +1,7 @@
 package TestMod.powers;
 
 import TestMod.actions.SetHPAction;
+import TestMod.characters.Lumo;
 import TestMod.patches.LumoPatch;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
@@ -58,7 +59,15 @@ public class MembershipPower extends AbstractPower implements CloneablePowerInte
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
         if (this.amount >= 40) {
-            LumoPatch.ReduceReviveTime(2);
+            LumoPatch.ReduceReviveTime(5);
+            Lumo mo = LumoPatch.Inst();
+            if (mo.lumoLevel == 2) return;
+            mo.levelUp();
+            mo.levelUp();
+            this.addToBot(new ApplyPowerAction(mo, mo, new ChipPower(mo, 10)));
+            //lumo patch increase max hp
+            //lumo patch set starting intent
+            //lumo patch change image
             //this.amount -= 15;
             if (this.amount <= 0) {
                 this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));

@@ -26,5 +26,17 @@
 "TestMod:HypnoticEyesPower": {
         "NAME": "Hypnotic Eyes",
         "DESCRIPTIONS": ["Whenever an Attack deals unblocked damage this turn, apply ", " #yTalisman."]
+},
+"TestMod:ClubPreservationPower": {
+        "NAME": "Club Preservation",
+        "DESCRIPTIONS": ["Memberships do not decrease for #b", " turn.", "turns."]
+},
+"TestMod:ObliviousPower": {
+        "NAME": "Oblivious Optimism",
+        "DESCRIPTIONS": ["Whenever you receive unblocked attack damage, add a #yWound into your discard pile."]
+},
+"TestMod:ChipPower": {
+        "NAME": "Intent",
+        "DESCRIPTIONS": ["Increases Lumo damage by #bM. NL Remove at the start of turn.", "Decreases Lumo damage by #bM. NL Remove at the start of turn."]
 }
 }

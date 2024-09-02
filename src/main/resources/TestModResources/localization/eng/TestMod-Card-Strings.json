@@ -54,8 +54,8 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
-  "TestMod:TalismanBladeSpray": {
-    "NAME": "Talisman Blade Spray",
+  "TestMod:TalismanBlade": {
+    "NAME": "Talisman Blade",
     "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman to ALL enemies."
   },
   "TestMod:MembershipPunch": {
@@ -117,5 +117,126 @@
   "TestMod:HypnoticEyes": {
     "NAME": "Hypnotic Eyes",
     "DESCRIPTION": "Whenever an Attack deals unblocked damage this turn, apply 1 TestMod:Talisman."
+  },
+  "TestMod:ClubPreservation": {
+    "NAME": "Club Preservation",
+    "DESCRIPTION": "Shuffle 2 Wounds into your draw pile. NL Draw 2 cards. NL TestMod:Memberships do not decrease this turn."
+  },
+  "TestMod:ObliviousOptimism": {
+    "NAME": "Oblivious Optimism",
+    "DESCRIPTION": "Gain !M! Intangible. NL When taking damage, shuffle a Wound into your discard pile."
+  },
+  "TestMod:PinScatter": {
+    "NAME": "Pin Scatter",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! TestMod:Membership."
+  },
+  "TestMod:KickNoLuma": {
+    "NAME": "Kick No Luma",
+    "DESCRIPTION": "Deal !D! damage thrice. NL Gain [E]  [E]  [E] ."
+  },
+  "TestMod:SupremeDrip": {
+    "NAME": "Supreme Drip",
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 2: NL Gain !M! *Plated *Armor."
+  },
+  "TestMod:SulkSession": {
+    "NAME": "Sulk Session",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has TestMod:Talisman, apply !M! Weak."
+  },
+  "TestMod:AngerStimulation": {
+    "NAME": "Anger Stimulation",
+    "DESCRIPTION": "Apply !M! Strength to *Lumo first."
+  },
+  "TestMod:AllIn": {
+    "NAME": "All In",
+    "DESCRIPTION": "TestMod:Command. (+!D!) NL Permanently increase this card's damage by !M!. NL Exhaust."
+  },
+  "TestMod:Fumosis": {
+    "NAME": "Fumosis",
+    "DESCRIPTION": "TestMod:Command. (0) NL Lose !M! Strength this turn. NL Lumo attacks an additional time."
+  },
+  "TestMod:DictateFate": {
+    "NAME": "Dictate Fate",
+    "DESCRIPTION": "Deal !D! damage. NL Enemy loses Strength equal to TestMod:Talisman. NL Exhaust."
+  },
+  "TestMod:SapidInSpire": {
+    "NAME": "Sapid In Spire",
+    "DESCRIPTION": "At the start of your turn, return this from the discard pile to your hand. NL TestMod:Payment 2: NL Gain !B! Block."
+  },
+  "TestMod:RibbonOfFate": {
+    "NAME": "Ribbon Of Fate",
+    "DESCRIPTION": "Discard your hand. NL Shuffle a *Wound into your discard pile. NL Draw a card. NL Gain 2 TestMod:Membership for each discard."
+  },
+  "TestMod:Invincible": {
+    "NAME": "Invincible",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has TestMod:Talisman, gain [E] [E]."
+  },
+  "TestMod:DeadlyTemptation": {
+    "NAME": "Deadly Temptation",
+    "DESCRIPTION": "Retain. NL Enemy loses !D! HP. NL For every TestMod:Talisman, it loses an additional !M! HP. NL Exhaust."
+  },
+  "TestMod:Surrounded": {
+    "NAME": "Surrounded",
+    "DESCRIPTION": "Converts all TestMod:Talisman to *Constricted."
+  },
+  "TestMod:SmallServitude": {
+    "NAME": "Small Servitude",
+    "DESCRIPTION": "Apply !M! Regen to *Lumo first."
+  },
+  "TestMod:StrengthInNumbers": {
+    "NAME": "Strength In Numbers",
+    "DESCRIPTION": "For every !M! TestMod:Membership, gain 1 *Plated *Armor and Strength."
+  },
+  "TestMod:Jarred": {
+    "NAME": "Jarred",
+      "DESCRIPTION": "Apply !M! *Metallicize to *Lumo first."
+  },
+  "TestMod:Indoctrination": {
+    "NAME": "Indoctrination",
+    "DESCRIPTION": "Gain !M! Strength. NL Exhaust. NL TestMod:Payment 4: NL Add a copy of this to your hand."
+  },
+  "TestMod:FalseIdol": {
+    "NAME": "False Idol",
+    "DESCRIPTION": "Apply !M! *Blur to you and Lumo."
+  },
+  "TestMod:Fundraiser": {
+    "NAME": "Fundraiser",
+    "DESCRIPTION": "Double your TestMod:Membership."
+  },
+  "TestMod:ProductionUpgrade": {
+    "NAME": "Production Upgrade",
+    "DESCRIPTION": "TestMod:Payment !M!: NL *Upgrade your Lumo."
+  },
+  "TestMod:TheDrawCard": {
+    "NAME": "The Draw Card",
+    "DESCRIPTION": "TestMod:Payment 3: NL Draw !M! cards."
+  },
+  "TestMod:OverwhelmingPresence": {
+    "NAME": "Overwhelming Presence",
+    "DESCRIPTION": "TestMod:Command. (+!D!) NL Targets the enemy with the lowest HP."
+  },
+  "TestMod:Flatline": {
+    "NAME": "Flatline",
+    "DESCRIPTION": "*Lumo immediately attacks !M! times and then dies."
+  },
+  "TestMod:BlanketBan": {
+    "NAME": "Blanket Ban",
+    "DESCRIPTION": "Ethereal. NL Exhaust 2 cards in draw pile. NL Lose X TestMod:Membership, NL Gain X Strength and Block.",
+    "UPGRADE_DESCRIPTION": "Exhaust 2 cards in draw pile. NL Lose X TestMod:Membership, NL Gain X Strength and Block."
+  },
+  "TestMod:EndlessSummoning": {
+    "NAME": "Endless Summoning",
+    "DESCRIPTION": "Discard 2 cards. NL Deal !D! damage to a random enemy. NL Gain !M! TestMod:Membership. NL On an enemy kill this turn, replay this card."
+  },
+  "TestMod:GrilledGrub": {
+    "NAME": "Grilled Grub",
+    "DESCRIPTION": "Deal !D! damage. Heal HP equal to unblocked damage. NL Exhaust."
+  },
+  "TestMod:PowerPlay": {
+    "NAME": "Power Play",
+    "DESCRIPTION": "At the start of your turn, lose 6 TestMod:Membership. NL Gain 1 Strength. NL Apply 1 TestMod:Talisman to all enemies."
+  },
+  "TestMod:StepIntoTheScene": {
+    "NAME": "Step Into The Scene",
+    "DESCRIPTION": "Gain 3 Block. NL Gain 2 TestMod:Membership. NL Increase Block and Membership by 1 permanently. NL Exhaust."
   }
 }

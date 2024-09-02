@@ -2,11 +2,15 @@ package TestMod.cards;
 
 import TestMod.TestMod;
 import TestMod.characters.TheLuma;
+import TestMod.powers.ClubPreservationPower;
+import TestMod.powers.DrivePower;
 import TestMod.powers.TalismanPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,14 +24,14 @@ public class ClubPreservation extends AbstractDynamicCard {
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
      *
-     * Bad Cosplay Gain 6 (9) Block. Apply 4 (6) talisman to ALL enemies. (exhaust)
+     * Club Preservation Add 2 wound to your draw pile, draw 2 cards, members do not decrease this turn
      */
 
 
     // TEXT DECLARATION
 
-    public static final String ID = TestMod.makeID(BadCosplay.class.getSimpleName());
-    public static final String IMG = makeCardPath("BadCosplay_Skill.png");
+    public static final String ID = TestMod.makeID(ClubPreservation.class.getSimpleName());
+    public static final String IMG = makeCardPath("ClubPreservation_Skill.png");
 
     // /TEXT DECLARATION/
 
@@ -40,10 +44,7 @@ public class ClubPreservation extends AbstractDynamicCard {
     public static final CardColor COLOR = TheLuma.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int BLOCK = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 3;
-    private static final int TALISMAN = 4;
-    private static final int UPGRADE_PLUS_TALISMAN = 2;
+    private static final int UPGRADE_PLUS_COST = 0;
 
 
 
@@ -52,24 +53,15 @@ public class ClubPreservation extends AbstractDynamicCard {
 
     public ClubPreservation() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = TALISMAN;
-        this.exhaust = true;
+
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new );
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Wound(), 2, true, true));
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(2));
-
-        Iterator var3 = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
-
-        AbstractMonster mo;
-        while(var3.hasNext()) {
-            mo = (AbstractMonster)var3.next();
-            this.addToBot(new ApplyPowerAction(mo, p, new TalismanPower(mo, p, magicNumber), magicNumber, true, AbstractGameAction.AttackEffect.NONE));
-        }
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ClubPreservationPower(p, 1), 1));
     }
 
     //Upgraded stats.
@@ -77,8 +69,7 @@ public class ClubPreservation extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBlock(UPGRADE_PLUS_BLOCK);
-            upgradeMagicNumber(UPGRADE_PLUS_TALISMAN);
+            upgradeBaseCost(UPGRADE_PLUS_COST);
             initializeDescription();
         }
     }

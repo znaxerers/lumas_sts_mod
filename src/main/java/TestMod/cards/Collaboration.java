@@ -99,9 +99,10 @@ public class Collaboration extends AbstractDynamicCard {
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
         AbstractPlayer p = AbstractDungeon.player;
         if (p.hasPower("TestMod:MembershipPower")) {
-            this.damage = p.getPower("TestMod:MembershipPower").amount;
+            this.damage = this.damage + p.getPower("TestMod:MembershipPower").amount;
             this.isDamageModified = true;
         }
     }
