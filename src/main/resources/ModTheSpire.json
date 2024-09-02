@@ -1,9 +1,9 @@
 {
-  "modid": "TestMod",
-  "name": "Test Mod",
+  "modid": "TheLuma",
+  "name": "The Luma",
   "Author_list": ["Zim","Ashsex","SpeedTheWeeb","NotHotChocolateBen"],
   "description": "Garry made a mod",
-  "version": "0.1",
+  "version": "0.1.1",
   "sts_version": "12-18-2022",
   "mts_version": "3.30.3",
   "dependencies": ["basemod"]
