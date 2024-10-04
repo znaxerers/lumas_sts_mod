@@ -2,19 +2,14 @@ package TestMod.cards;
 
 import TestMod.TestMod;
 import TestMod.characters.TheLuma;
-import TestMod.powers.TalismanPower;
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 
 import java.util.Iterator;
 
@@ -22,7 +17,7 @@ import static TestMod.TestMod.makeCardPath;
 
 // public class ${NAME} extends AbstractDynamicCard
 // Remove this line when you make a template. Refer to https://github.com/daviscook477/BaseMod/wiki/AutoAdd if you want to know what it does.
-public class SulkSession extends AbstractDynamicCard {
+public class LostChild extends AbstractDynamicCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -33,8 +28,8 @@ public class SulkSession extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     // public static final String ID = DefaultMod.makeID(${NAME}.class.getSimpleName()); // USE THIS ONE FOR THE TEMPLATE;
-    public static final String ID = TestMod.makeID("SulkSession"); // DELETE THIS ONE.
-    public static final String IMG = makeCardPath("SulkSession_Attack.png");// "public static final String IMG = makeCardPath("${NAME}.png");
+    public static final String ID = TestMod.makeID("LostChild"); // DELETE THIS ONE.
+    public static final String IMG = makeCardPath("LostChild_Attack.png");// "public static final String IMG = makeCardPath("${NAME}.png");
     // This does mean that you will need to have an image with the same NAME as the card in your image folder for it to run correctly.
 
 
@@ -58,7 +53,7 @@ public class SulkSession extends AbstractDynamicCard {
     // /STAT DECLARATION/
 
 
-    public SulkSession() { // public ${NAME}() - This one and the one right under the imports are the most important ones, don't forget them
+    public LostChild() { // public ${NAME}() - This one and the one right under the imports are the most important ones, don't forget them
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         baseDamage = DAMAGE;
         baseMagicNumber = magicNumber = WEAK;

@@ -58,7 +58,7 @@ public class MembershipPower extends AbstractPower implements CloneablePowerInte
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        if (this.amount >= 40) {
+        if (this.amount >= 39) {
             LumoPatch.ReduceReviveTime(5);
             Lumo mo = LumoPatch.Inst();
             if (mo.lumoLevel == 2) return;

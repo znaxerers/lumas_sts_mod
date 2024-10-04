@@ -138,8 +138,8 @@
     "NAME": "Supreme Drip",
     "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 2: NL Gain !M! *Plated *Armor."
   },
-  "TestMod:SulkSession": {
-    "NAME": "Sulk Session",
+  "TestMod:LostChild": {
+    "NAME": "Lost Child",
     "DESCRIPTION": "Deal !D! damage. NL If the enemy has TestMod:Talisman, apply !M! Weak."
   },
   "TestMod:AngerStimulation": {
@@ -238,5 +238,13 @@
   "TestMod:StepIntoTheScene": {
     "NAME": "Step Into The Scene",
     "DESCRIPTION": "Gain 3 Block. NL Gain 2 TestMod:Membership. NL Increase Block and Membership by 1 permanently. NL Exhaust."
+  },
+  "TestMod:KlassicKaraoke": {
+    "NAME": "Klassic Karaoke",
+    "DESCRIPTION": "TestMod:Command. (+!D!) NL Permanently increase this card's damage by !M!. NL Exhaust."
+  },
+  "TestMod:SulkingAura": {
+    "NAME": "Sulking Aura",
+    "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman twice. NL If the enemy has TestMod:Talisman, gain [E]."
   }
 }
