@@ -77,7 +77,7 @@ public class Lumo extends AbstractMonster {
     protected AnimationInfo currentAnim;
 
     public Lumo() {
-        super(NAME, ID, 15, 0.0F, 0.0F, 80.0F, 250.0F, (String)null, 0.0F, 0.0F);
+        super(NAME, ID, 15, 0.0F, 0.0F, 100.0F, 250.0F, (String)null, 0.0F, 0.0F);
         this.isPlayer = true;
         this.damage.add(new DamageInfo(this, 3));
 //        SkinSelectScreen.Skin skin = SkinSelectScreen.getSkin();
@@ -461,7 +461,7 @@ public class Lumo extends AbstractMonster {
 
         if (this.maxHealth == 15) this.maxHealth = 10;
 
-        this.img = LumoImageMaster.LUMO_LEVEL[lumoLevel];
+        this.img = LumoImageMaster.updateLumo(lumoLevel);
         this.increaseMaxHp(this.maxHealth, true);
         this.hb_w += this.hb_w;
         this.intentHb.height += 100.0F;

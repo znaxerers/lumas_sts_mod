@@ -90,7 +90,8 @@ public class LumoTakeDamagePatch {
         }
 
         public static void Prefix(GainBlockAction _inst) {
-            if (_inst.target == AbstractDungeon.player && GenericHelper.isAlive(_inst.target) && (Float)ReflectionHacks.getPrivate(_inst, AbstractGameAction.class, "duration") == (Float)ReflectionHacks.getPrivate(_inst, AbstractGameAction.class, "startDuration") && LumoTakeDamagePatch.getTarget()) {
+            if (_inst.target == AbstractDungeon.player && LumoTakeDamagePatch.getTarget()) {
+            //if (_inst.target == AbstractDungeon.player && GenericHelper.isAlive(_inst.target) && (Float)ReflectionHacks.getPrivate(_inst, AbstractGameAction.class, "duration") == (Float)ReflectionHacks.getPrivate(_inst, AbstractGameAction.class, "startDuration") && LumoTakeDamagePatch.getTarget()) {
                 _inst.target = LumoTakeDamagePatch.target;
                 LumoTakeDamagePatch.logger.info("获得格挡改变了目标。目前：" + _inst.target.name);
             }
@@ -125,6 +126,7 @@ public class LumoTakeDamagePatch {
     public static class ChangeDamageTarget {
         public ChangeDamageTarget() {
         }
+
 
         public static void Postfix(AbstractGameAction _inst, AbstractCreature target, DamageInfo info) {
             if (target != null && info.type != DamageType.HP_LOSS && (info.owner == null || !info.owner.isPlayer) && target == AbstractDungeon.player && LumoTakeDamagePatch.getTarget()) {

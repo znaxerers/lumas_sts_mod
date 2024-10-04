@@ -110,7 +110,8 @@ public class GenericHelper {
     }
 
     public static boolean isAlive(AbstractCreature c) {
-        return c != null && !c.isDeadOrEscaped() && !c.isDead;
+        return c != null;
+        //return c != null && !c.isDeadOrEscaped() && !c.isDead;
     }
 
     public static int aliveMonstersAmount() {
