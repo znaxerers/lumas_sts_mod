@@ -175,6 +175,7 @@ public class TheLuma extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(ManualLabour.ID);
+        retVal.add(Explode.ID);
 
 //        retVal.add(DefaultCommonAttack.ID);
 //        logger.info("Card 1");

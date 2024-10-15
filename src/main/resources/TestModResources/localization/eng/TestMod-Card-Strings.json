@@ -246,5 +246,9 @@
   "TestMod:SulkingAura": {
     "NAME": "Sulking Aura",
     "DESCRIPTION": "Deal !D! damage and apply !M! TestMod:Talisman twice. NL If the enemy has TestMod:Talisman, gain [E]."
+  },
+  "TestMod:Explode": {
+    "NAME": "Explode",
+    "DESCRIPTION": "Lumo explodes and deals damage to all enemies equal to remaining HP."
   }
 }
