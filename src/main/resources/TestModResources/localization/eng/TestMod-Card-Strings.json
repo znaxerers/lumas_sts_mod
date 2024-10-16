@@ -184,7 +184,7 @@
   },
   "TestMod:StrengthInNumbers": {
     "NAME": "Strength In Numbers",
-    "DESCRIPTION": "For every !M! TestMod:Membership, gain 1 *Plated *Armor and Strength."
+    "DESCRIPTION": "For every !M! TestMod:Membership, gain 1 *Plated *Armor and Strength. NL Exhaust."
   },
   "TestMod:Jarred": {
     "NAME": "Jarred",
@@ -200,7 +200,7 @@
   },
   "TestMod:Fundraiser": {
     "NAME": "Fundraiser",
-    "DESCRIPTION": "Double your TestMod:Membership."
+    "DESCRIPTION": "Double your TestMod:Membership. NL Exhaust."
   },
   "TestMod:ProductionUpgrade": {
     "NAME": "Production Upgrade",
@@ -250,5 +250,21 @@
   "TestMod:Explode": {
     "NAME": "Explode",
     "DESCRIPTION": "Lumo explodes and deals damage to all enemies equal to remaining HP."
+  },
+  "TestMod:AspirationWish": {
+    "NAME": "Aspiration Wish",
+    "DESCRIPTION": "Gain !B! Block. NL Gain 1 additional Block for each TestMod:Talisman on an enemy."
+  },
+  "TestMod:Cookout": {
+    "NAME": "Cookout",
+    "DESCRIPTION": "Gain !M!X TestMod:Membership. NL TestMod:Payment 2: NL Gain 10 Block."
+  },
+  "TestMod:DomainExpansion": {
+    "NAME": "Domain Expansion",
+    "DESCRIPTION": "Whenever you apply TestMod:Talisman, deal damage equal to !M! times enemy's TestMod:Talisman. NL Reduces TestMod:Talisman cap to 10."
+  },
+  "TestMod:ReturnOnInvestment": {
+    "NAME": "Return On Investment",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust. NL TestMod:Payment 10: NL Permanently increase this card's damage by !M!"
   }
 }

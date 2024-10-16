@@ -38,5 +38,9 @@
 "TestMod:ChipPower": {
         "NAME": "Intent",
         "DESCRIPTIONS": ["Increases Lumo damage by #bM. NL Remove at the start of turn.", "Decreases Lumo damage by #bM. NL Remove at the start of turn."]
+},
+"TestMod:DomainExpansionPower": {
+        "NAME": "Domain Expansion: Death-Knell Theatre",
+        "DESCRIPTIONS": ["Whenever you apply #yTalisman, deal damage equal to #b", " times enemy's #yTalisman. NL #yTalisman cap reduced to #b10."]
 }
 }

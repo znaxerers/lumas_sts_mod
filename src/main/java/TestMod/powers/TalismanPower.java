@@ -85,7 +85,7 @@ public class TalismanPower extends AbstractPower implements CloneablePowerInterf
     @Override
     public void atStartOfTurn() {
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-            if (this.amount >= 15) {
+            if ((this.amount >= 15) || (AbstractDungeon.player.hasPower("TestMod:DomainExpansion") && this.amount >= 10)) {
                 this.flashWithoutSound();
                 this.addToBot(new LoseHPAction(this.owner, this.owner, this.amount, AbstractGameAction.AttackEffect.FIRE));
                 this.amount -= this.amount;

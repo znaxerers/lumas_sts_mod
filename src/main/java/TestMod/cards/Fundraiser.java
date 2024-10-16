@@ -57,6 +57,7 @@ public class Fundraiser extends AbstractDynamicCard {
 
     public Fundraiser() { // public ${NAME}() - This one and the one right under the imports are the most important ones, don't forget them
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        this.exhaust = true;
     }
 
 

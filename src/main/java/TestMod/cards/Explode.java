@@ -31,9 +31,9 @@ public class Explode extends AbstractLumoCard {
         GenericHelper.addToBotAbstract(() -> {
             Lumo mo = LumoPatch.Inst();
             if (mo != null) {
-                this.addToBot(new DamageAllEnemiesAction(p, mo.currentHealth, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
                 this.addToBot(new VFXAction(new ExplosionSmallEffect(mo.hb.cX, mo.hb.cY), 0.1F));
                 this.addToBot(new SuicideAction(mo));
+                this.addToBot(new DamageAllEnemiesAction(p, mo.currentHealth, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
             }
         });
     }
