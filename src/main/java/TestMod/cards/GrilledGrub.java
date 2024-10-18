@@ -1,20 +1,29 @@
 package TestMod.cards;
 
 import TestMod.TestMod;
+import TestMod.characters.Lumo;
 import TestMod.characters.TheLuma;
+import TestMod.helper.GenericHelper;
+import TestMod.patches.LumoPatch;
 import TestMod.powers.MembershipPower;
 import basemod.AutoAdd;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import com.megacrit.cardcrawl.vfx.combat.FlyingOrbEffect;
 
 import java.math.BigDecimal;
 
@@ -30,7 +39,6 @@ import static TestMod.TestMod.makeCardPath;
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 
-@AutoAdd.Ignore
 public class GrilledGrub extends AbstractDynamicCard {
 
     /*
@@ -104,8 +112,41 @@ public class GrilledGrub extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //calculateCardDamage(m);
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SMASH));
+        if (m != null) {
+            if (Settings.FAST_MODE) {
+                this.addToBot(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Settings.GOLD_COLOR.cpy()), 0.1F));
+            } else {
+                this.addToBot(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale, Settings.GOLD_COLOR.cpy()), 0.3F));
+            }
+        }
+        this.addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+
+        // this code block should be an action
+        int healAmount = 0;
+        if (!m.isDying && m.currentHealth > 0 && !m.isEscaping) {
+            m.damage(new DamageInfo(p, this.damage, this.damageTypeForTurn));
+            if (m.lastDamageTaken > 0) {
+                healAmount += m.lastDamageTaken;
+
+                for (int j = 0; j < m.lastDamageTaken / 2 && j < 10; ++j) {
+                    this.addToBot(new VFXAction(new FlyingOrbEffect(m.hb.cX, m.hb.cY)));
+                }
+            }
+        }
+
+        if (healAmount > 0) {
+            if (!Settings.FAST_MODE) {
+                this.addToBot(new WaitAction(0.3F));
+            }
+
+            this.addToBot(new HealAction(p, p, healAmount));
+            Lumo mo = LumoPatch.Inst();
+            if (mo != null) {
+                this.addToBot(new HealAction(mo, mo, healAmount));
+            }
+        }
+        // end of code block action
+
     }
 
     // Upgraded stats.

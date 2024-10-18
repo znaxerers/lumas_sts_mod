@@ -64,7 +64,7 @@
   },
   "TestMod:ManualLabour": {
     "NAME": "Manual Labour",
-    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 3: NL Summon Bootleg Lumo."
+    "DESCRIPTION": "Gain !B! Block. NL TestMod:Payment 3: NL Summon Bootleg *Lumo."
   },
   "TestMod:PotLuck": {
     "NAME": "Pot Luck",
@@ -152,7 +152,7 @@
   },
   "TestMod:Fumosis": {
     "NAME": "Fumosis",
-    "DESCRIPTION": "TestMod:Command. (0) NL Lose !M! Strength this turn. NL Lumo attacks an additional time."
+    "DESCRIPTION": "TestMod:Command. (0) NL Lose !M! Strength this turn. NL *Lumo attacks an additional time."
   },
   "TestMod:DictateFate": {
     "NAME": "Dictate Fate",
@@ -196,7 +196,7 @@
   },
   "TestMod:FalseIdol": {
     "NAME": "False Idol",
-    "DESCRIPTION": "Apply !M! *Blur to you and Lumo."
+    "DESCRIPTION": "Apply !M! *Blur to you and *Lumo."
   },
   "TestMod:Fundraiser": {
     "NAME": "Fundraiser",
@@ -204,7 +204,7 @@
   },
   "TestMod:ProductionUpgrade": {
     "NAME": "Production Upgrade",
-    "DESCRIPTION": "TestMod:Payment !M!: NL *Upgrade your Lumo."
+    "DESCRIPTION": "TestMod:Payment !M!: NL *Upgrade your *Lumo."
   },
   "TestMod:TheDrawCard": {
     "NAME": "The Draw Card",
@@ -220,8 +220,8 @@
   },
   "TestMod:BlanketBan": {
     "NAME": "Blanket Ban",
-    "DESCRIPTION": "Ethereal. NL Exhaust 2 cards in draw pile. NL Lose X TestMod:Membership, NL Gain X Strength and Block.",
-    "UPGRADE_DESCRIPTION": "Exhaust 2 cards in draw pile. NL Lose X TestMod:Membership, NL Gain X Strength and Block."
+    "DESCRIPTION": "Ethereal. NL Exhaust 2 cards. NL Lose ALL TestMod:Membership, NL Gain Strength and Block equal to TestMod:Membership.",
+    "UPGRADE_DESCRIPTION": "Exhaust 2 cards. NL Lose ALL TestMod:Membership, NL Gain Strength and Block equal to TestMod:Membership."
   },
   "TestMod:EndlessSummoning": {
     "NAME": "Endless Summoning",
@@ -229,7 +229,7 @@
   },
   "TestMod:GrilledGrub": {
     "NAME": "Grilled Grub",
-    "DESCRIPTION": "Deal !D! damage. Heal HP equal to unblocked damage. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. Heal HP to you and *Lumo equal to unblocked damage. NL Exhaust."
   },
   "TestMod:PowerPlay": {
     "NAME": "Power Play",
@@ -237,7 +237,7 @@
   },
   "TestMod:StepIntoTheScene": {
     "NAME": "Step Into The Scene",
-    "DESCRIPTION": "Gain 3 Block. NL Gain 2 TestMod:Membership. NL Increase Block and Membership by 1 permanently. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! TestMod:Membership. NL Permanently increase this card's Block and TestMod:Membership by !TestMod:SecondMagic!. NL Exhaust."
   },
   "TestMod:KlassicKaraoke": {
     "NAME": "Klassic Karaoke",
@@ -249,7 +249,7 @@
   },
   "TestMod:Explode": {
     "NAME": "Explode",
-    "DESCRIPTION": "Lumo explodes and deals damage to all enemies equal to remaining HP."
+    "DESCRIPTION": "*Lumo explodes and deals damage to all enemies equal to remaining HP."
   },
   "TestMod:AspirationWish": {
     "NAME": "Aspiration Wish",
